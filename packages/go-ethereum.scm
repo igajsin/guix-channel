@@ -1,3 +1,9 @@
+(define-module (packages go-ethereum)
+  #:use-module (guix packages)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (guix git-download)
+  #:use-module (guix build-system go))
+
 (define-public go-github-com-stackexchange-wmi
   (package
     (name "go-github-com-stackexchange-wmi")
