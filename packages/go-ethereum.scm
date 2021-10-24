@@ -5836,6 +5836,42 @@
       (description "This package contains a client implementation for OAuth 2.0
  spec in Go.")
       (license license:bsd-3))))
+(define-public go-cloud-google-com-go
+  (package
+    (name "go-cloud-google-com-go")
+    (version "0.97.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/googleapis/google-cloud-go")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0c19r1l1m1ngjkm2pcryq9rv8r2l3hx3am2zy3j2ayp73gr50vix"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "cloud.google.com/go"))
+    (propagated-inputs
+      `(("go-google-golang-org-protobuf" ,go-google-golang-org-protobuf)
+        ("go-google-golang-org-grpc" ,go-google-golang-org-grpc)
+        ("go-google-golang-org-genproto" ,go-google-golang-org-genproto)
+        ("go-google-golang-org-api" ,go-google-golang-org-api)
+        ("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)
+        ("go-golang-org-x-oauth2" ,go-golang-org-x-oauth2)
+        ("go-go-opencensus-io" ,go-go-opencensus-io)
+        ("go-github-com-googleapis-gax-go-v2"
+         ,go-github-com-googleapis-gax-go-v2)
+        ("go-github-com-google-martian-v3" ,go-github-com-google-martian-v3)
+        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)
+        ("go-github-com-golang-protobuf" ,go-github-com-golang-protobuf)
+        ("go-cloud-google-com-go-storage" ,go-cloud-google-com-go-storage)))
+    (home-page "https://cloud.google.com/go")
+    (synopsis "Google Cloud Client Libraries for Go")
+    (description
+      "Package cloud is the root of the packages used to access Google Cloud
+       Services.  See https://godoc.org/cloud.google.com/go for a full list
+       of sub-packages.")
+    (license license:asl2.0)))
 
 
 (define-public go-golang-org-x-exp
