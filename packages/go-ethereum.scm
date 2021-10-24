@@ -5995,6 +5995,33 @@ for the Go language.")
       (home-page "https://go.googlesource.com/crypto/")
       (license license:bsd-3))))
 
+(define-public go-golang-org-x-net
+  (let ((commit "ba9fcec4b297b415637633c5a6e8fa592e4a16c3")
+        (revision "4"))
+    (package
+      (name "go-golang-org-x-net")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://go.googlesource.com/net")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "1hbqvy6r0s5h0dpdqw8fynl3cq0acin3iyqki9xvl5r8h33yb9bx"))))
+      (build-system go-build-system)
+      (arguments
+       `(#:import-path "golang.org/x/net"
+         ; Source-only package
+         #:tests? #f
+         #:phases
+         (modify-phases %standard-phases
+           (delete 'build))))
+      (synopsis "Go supplemental networking libraries")
+      (description "This package provides supplemental Go networking libraries.")
+      (home-page "https://go.googlesource.com/net")
+      (license license:bsd-3))))
 
 (define-public go-golang-org-x-exp
   (package
