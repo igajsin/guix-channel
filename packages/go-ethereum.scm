@@ -5953,6 +5953,48 @@ Go programming language.")
       (home-page "https://go.googlesource.com/tools/")
       (license license:bsd-3))))
 
+(define-public go-golang-org-x-crypto
+  (let ((commit "2aa609cf4a9d7d1126360de73b55b6002f9e052a")
+        (revision "5"))
+    (package
+      (name "go-golang-org-x-crypto")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://go.googlesource.com/crypto")
+                      (commit commit)))
+                (file-name (string-append "go.googlesource.com-crypto-"
+                                          version "-checkout"))
+                (sha256
+                 (base32
+                  "1yvis6fqbsd7f356aqyi18f76vnwj3bry6mxqnkvshq4cwrf92il"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "golang.org/x/crypto"
+         ;; Source-only package
+         #:tests? #f
+         #:phases
+         (modify-phases %standard-phases
+           ;; Source-only package
+           (delete 'build)
+           (add-before 'reset-gzip-timestamps 'make-gzip-archive-writable
+             (lambda* (#:key outputs #:allow-other-keys)
+               (map (lambda (file)
+                      (make-file-writable file))
+                    (find-files
+                      (string-append (assoc-ref outputs "out")
+                                     "/src/golang.org/x/crypto/ed25519/testdata")
+                      ".*\\.gz$"))
+               #t)))))
+      (propagated-inputs
+       `(("go-golang-org-x-sys" ,go-golang-org-x-sys)))
+      (synopsis "Supplementary cryptographic libraries in Go")
+      (description "This package provides supplementary cryptographic libraries
+for the Go language.")
+      (home-page "https://go.googlesource.com/crypto/")
+      (license license:bsd-3))))
+
 
 (define-public go-golang-org-x-exp
   (package
