@@ -6023,6 +6023,42 @@ for the Go language.")
       (home-page "https://go.googlesource.com/net")
       (license license:bsd-3))))
 
+(define-public go-github-com-stretchr-testify
+  (package
+    (name "go-github-com-stretchr-testify")
+    (version "1.5.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/stretchr/testify")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "09r89m1wy4cjv2nps1ykp00qjpi0531r07q3s34hr7m6njk4srkl"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/stretchr/testify"))
+    (propagated-inputs
+     `(("github.com/davecgh/go-spew" ,go-github-com-davecgh-go-spew)
+       ("github.com/pmezard/go-difflib" ,go-github-com-pmezard-go-difflib)
+       ("github.com/stretchr/objx" ,go-github-com-stretchr-objx)
+       ("gopkg.in/yaml.v2" ,go-gopkg-in-yaml-v2)))
+    (home-page "https://github.com/stretchr/testify")
+    (synopsis "Go helper library for tests and invariant checking")
+    (description "This package provide many tools for testifying that your
+code will behave as you intend.
+
+Features include:
+@itemize
+@item Easy assertions
+@item Mocking
+@item HTTP response trapping
+@item Testing suite interfaces and functions.
+@end itemize")
+    (license license:expat)))
+
 (define-public go-golang-org-x-exp
   (package
     (name "go-golang-org-x-exp")
