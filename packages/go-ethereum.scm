@@ -5900,6 +5900,28 @@
      "Go clinet for Google Object storage.")
     (license license:asl2.0)))
 
+(define-public go-github-com-pkg-errors
+  (package
+    (name "go-github-com-pkg-errors")
+    (version "0.9.1")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/pkg/errors")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1761pybhc2kqr6v5fm8faj08x9bql8427yqg6vnfv6nhrasx1mwq"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "github.com/pkg/errors"))
+    (synopsis "Go error handling primitives")
+    (description "This package provides @code{error}, which offers simple
+error handling primitives in Go.")
+    (home-page "https://github.com/pkg/errors")
+    (license license:bsd-2)))
+
 
 (define-public go-golang-org-x-exp
   (package
