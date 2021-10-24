@@ -1522,9 +1522,9 @@
         ("go-github-com-golang-protobuf" ,go-github-com-golang-protobuf)
         ("go-github-com-davecgh-go-spew" ,go-github-com-davecgh-go-spew)))
     (home-page "https://github.com/apache/arrow")
-    (synopsis #f)
-    (description "Package arrow provides an implementation of Apache Arrow.")
-    (license unknown-license!)))
+    (synopsis "Package arrow provides an implementation of Apache Arrow.")
+    (description "Apache Arrow is a multi-language toolbox for accelerated data interchange and in-memory processing")
+    (license license:asl2.0)))
 
 (define-public go-github-com-form3tech-oss-jwt-go
   (package
@@ -5430,7 +5430,7 @@
     (synopsis "YAML marshaling and unmarshaling support for Go")
     (description
       "kubernetes-sigs/yaml is a permanent fork of ghodss/yaml.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-go-etcd-io-etcd-client-v3
   (package
@@ -5559,7 +5559,7 @@
     (description
       "Package XGB provides the X Go Binding, which is a low-level API to communicate
        with the core X protocol and many of the X extensions.")
-    (license unknown-license!)))
+    (license license:bsd-4))) ;; not true
 
 (define-public go-github-com-go-gl-glfw-v3-3-glfw
   (package
@@ -5759,6 +5759,34 @@
       "The Go mobile repository holds packages and build tools for using Go on mobile platforms.")
     (license license:bsd-3)))
 
+(define-public go-golang-org-x-sys
+  (package
+    (name "go-golang-org-x-sys")
+    (version "0.0.0-20211023085530-d6a326fbbf70")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://go.googlesource.com/sys")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0liy6xkmkf84qkd65rz28bxysdvs02lr7irq095b4yxy4yly12s7"))))
+    (build-system go-build-system)
+    (arguments 
+     `(#:import-path "golang.org/x/sys"
+       #:tests? #f
+       #:phases
+         (modify-phases %standard-phases
+           (delete 'build))))
+    (home-page "https://golang.org/x/sys")
+    (synopsis "sys")
+    (description
+      "This repository holds supplemental Go packages for low-level interactions with
+      the operating system.")
+    (license license:bsd-3)))
+
+
 (define-public go-golang-org-x-exp
   (package
     (name "go-golang-org-x-exp")
@@ -5944,11 +5972,11 @@
     (build-system go-build-system)
     (arguments '(#:import-path "github.com/clbanning/mxj"))
     (home-page "https://github.com/clbanning/mxj")
-    (synopsis #f)
+    (synopsis "Decode/encode XML to/from map[string]interface{} values.")
     (description
       "Marshal/Unmarshal XML to/from map[string]interface{} values (and JSON);
        extract/modify values from maps by key or key-path, including wildcards.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-github-com-godbus-dbus-v5
   (package
@@ -6553,7 +6581,7 @@
        random number generator.  Cribbed from (code Nomad) before it was moved into
        (code Consul) and made into a helper function, and now further modularized to 
        be a super lightweight and reusable library.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-github-com-hashicorp-memberlist
   (package
@@ -7225,7 +7253,7 @@
     (description
      "A wrapper around go-yaml designed to enable a better way of handling YAML 
       when marshaling to and from structs.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-github-com-rogpeppe-fastuuid
   (package
