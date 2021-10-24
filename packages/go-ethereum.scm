@@ -5836,6 +5836,7 @@
       (description "This package contains a client implementation for OAuth 2.0
  spec in Go.")
       (license license:bsd-3))))
+
 (define-public go-cloud-google-com-go
   (package
     (name "go-cloud-google-com-go")
@@ -5871,6 +5872,32 @@
       "Package cloud is the root of the packages used to access Google Cloud
        Services.  See https://godoc.org/cloud.google.com/go for a full list
        of sub-packages.")
+    (license license:asl2.0)))
+
+(define-public go-cloud-google-com-go-storage
+  (package
+    (name "go-cloud-google-com-go-storage")
+    (version "0.97.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/googleapis/google-cloud-go")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0c19r1l1m1ngjkm2pcryq9rv8r2l3hx3am2zy3j2ayp73gr50vix"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:unpack-path "cloud.google.com/go"
+       #:import-path "cloud.google.com/go/storage"))
+    (home-page
+     "https://pkg.go.dev/cloud.google.com/go/storage")
+    (synopsis
+     "Go wrapper for Google Storage")
+    (description
+     "Go clinet for Google Object storage.")
     (license license:asl2.0)))
 
 
