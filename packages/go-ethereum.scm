@@ -4,6 +4,29 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-stretchr-objx
+  (package
+    (name "go-github-com-stretchr-objx")
+    (version "0.2.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/stretchr/objx")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0pcdvakxgddaiwcdj73ra4da05a3q4cgwbpm2w75ycq4kzv8ij8k"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/stretchr/objx"))
+    (home-page "https://github.com/stretchr/objx")
+    (synopsis "Go package for dealing with maps, slices, JSON and other data")
+    (description "This package provides a Go library for dealing with maps,
+slices, JSON and other data.")
+    (license license:expat)))
+
 (define-public go-go-uber-org-multierr
   (package
     (name "go-go-uber-org-multierr")
