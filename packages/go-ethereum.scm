@@ -4,6 +4,28 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-mitchellh-mapstructure
+  (package
+    (name "go-github-com-mitchellh-mapstructure")
+    (version "1.1.2") ;; NOTE: Updating to 1.3.1 breaks tests on viper-1.7.0
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mitchellh/mapstructure")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "03bpv28jz9zhn4947saqwi328ydj7f6g6pf1m2d4m5zdh5jlfkrr"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "github.com/mitchellh/mapstructure"))
+    (home-page "https://github.com/mitchellh/mapstructure")
+    (synopsis "Go library for decoding generic map values")
+    (description "Go library for decoding generic map values")
+    (license license:expat)))
+
 (define-public go-golang-org-x-sync
   (let ((commit "6e8e738ad208923de99951fe0b48239bfd864f28")
         (revision "1"))
