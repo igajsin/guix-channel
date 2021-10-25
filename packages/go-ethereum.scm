@@ -4,6 +4,30 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-gopkg-in-check-v1
+  (package
+    (name "go-gopkg-in-check-v1")
+    (version "1.0.0-20201130134442-10cb98267c6c")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/go-check/check")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1jwxndf8rsyx0fgrp47d99rp55yzssmryb92jfj3yf7zd8rjjljn"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "gopkg.in/check.v1"))
+    (propagated-inputs
+     `(("go-github-com-kr-pretty" ,go-github-com-kr-pretty)))
+    (home-page "https://gopkg.in/check.v1")
+    (synopsis "Test framework for the Go language")
+    (description "This package provides a test library for the Go language.")
+    (license license:bsd-2)))
+
 (define-public go-github-com-google-uuid
   (package
     (name "go-github-com-google-uuid")
