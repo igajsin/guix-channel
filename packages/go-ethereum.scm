@@ -4,6 +4,28 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-pmezard-go-difflib
+  (package
+    (name "go-github-com-pmezard-go-difflib")
+    (version "1.0.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/pmezard/go-difflib")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0c1cn55m4rypmscgf0rrb88pn58j3ysvc2d0432dp3c6fqg6cnzw"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/pmezard/go-difflib/difflib"
+       #:unpack-path "github.com/pmezard/go-difflib/"))
+    (home-page "https://github.com/pmezard/go-difflib")
+    (synopsis "Go diff implementation")
+    (description "This package provides unified and context-aware diffs in Go.")
+    (license license:bsd-3)))
+
 (define-public go-gopkg-in-yaml-v2
   (package
     (name "go-gopkg-in-yaml-v2")
