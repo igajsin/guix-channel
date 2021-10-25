@@ -4,6 +4,34 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-golang-org-x-text
+  (package
+    (name "go-golang-org-x-text")
+    (version "0.3.2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://go.googlesource.com/text")
+                    (commit (string-append "v" version))))
+              (file-name (string-append "go.googlesource.com-text-"
+                                        version "-checkout"))
+              (sha256
+               (base32
+                "0flv9idw0jm5nm8lx25xqanbkqgfiym6619w575p7nrdh0riqwqh"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "golang.org/x/text"
+       ; Source-only package
+       #:tests? #f
+       #:phases
+       (modify-phases %standard-phases
+         (delete 'build))))
+    (synopsis "Supplemental Go text processing libraries")
+    (description "This package provides supplemental Go libraries for text
+    processing.")
+    (home-page "https://go.googlesource.com/text")
+    (license license:bsd-3)))
+
 (define-public go-golang-org-x-lint
   (let ((commit "83fdc39ff7b56453e3793356bcff3070b9b96445")
         (revision "0"))
