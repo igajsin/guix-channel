@@ -4,6 +4,29 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-kr-pretty
+  (package
+    (name "go-github-com-kr-pretty")
+    (version "0.2.1")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/kr/pretty")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0vzfz06y9q8gs2nxx0kys0591vzp78k0fvpb8digi5n15h3b25hy"))))
+    (build-system go-build-system)
+    (propagated-inputs
+     `(("go-github-com-kr-text" ,go-github-com-kr-text)))
+    (arguments
+     '(#:import-path "github.com/kr/pretty"))
+    (synopsis "Pretty printer for Go values")
+    (description "This package provides a pretty printer for Go values.")
+    (home-page "https://github.com/kr/pretty")
+    (license license:expat)))
+
 (define-public go-github-com-stretchr-objx
   (package
     (name "go-github-com-stretchr-objx")
