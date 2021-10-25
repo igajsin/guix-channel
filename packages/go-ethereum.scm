@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-gopkg-in-yaml-v2
+  (package
+    (name "go-gopkg-in-yaml-v2")
+    (version "2.2.2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gopkg.in/yaml.v2.git")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+         (base32
+          "01wj12jzsdqlnidpyjssmj0r4yavlqy7dwrg7adqd8dicjc4ncsa"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "gopkg.in/yaml.v2"))
+    (native-inputs
+     `(("go-gopkg-in-check-v1" ,go-gopkg-in-check-v1)))
+    (home-page "https://gopkg.in/yaml.v2")
+    (synopsis "YAML reader and writer for the Go language")
+    (description
+     "This package provides a Go library for encode and decode YAML
+values.")
+    (license license:asl2.0)))
+
 (define-public go-github-com-shurcool-sanitized-anchor-name
   (package
     (name "go-github-com-shurcool-sanitized-anchor-name")
