@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-mattn-go-isatty
+  (package
+    (name "go-github-com-mattn-go-isatty")
+    (version "0.0.11")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mattn/go-isatty")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0h671sv7hfprja495kavazkalkx7xzaqksjh13brcnwq67ijrali"))))
+    (build-system go-build-system)
+    (propagated-inputs
+     `(("go-golang-org-x-sys" ,go-golang-org-x-sys)))
+    (arguments
+     '(#:import-path "github.com/mattn/go-isatty"))
+    (home-page "https://github.com/mattn/go-isatty")
+    (synopsis "Provide @code{isatty} for Golang")
+    (description "This package provides @code{isatty}, a Go module that can
+tell you whether a file descriptor points to a terminal and the type of the
+terminal.")
+    (license license:expat)))
+
 (define-public go-github-com-agl-ed25519
   (package
     (name "go-github-com-agl-ed25519")
