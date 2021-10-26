@@ -4,9 +4,9 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
-(define-public go-github-com-cactus-go-statsd-client
+(define-public go-github-com-cactus-go-statsd-client-statsd
   (package
-    (name "go-github-com-cactus-go-statsd-client")
+    (name "go-github-com-cactus-go-statsd-client-statsd")
     (version "3.2.1+incompatible")
     (source
       (origin
@@ -18,7 +18,9 @@
         (sha256
           (base32 "1clpj7i26mwl1z5fvdszj78r8i0w6f5ggw7l312ndh41qvhdy5gk"))))
     (build-system go-build-system)
-    (arguments '(#:import-path "github.com/cactus/go-statsd-client"))
+    (arguments
+     '(#:import-path "github.com/cactus/go-statsd-client/statsd"
+       #:unpack-path "github.com/cactus/go-statsd-client"))
     (home-page "https://github.com/cactus/go-statsd-client")
     (synopsis "go-statsd-client")
     (description
