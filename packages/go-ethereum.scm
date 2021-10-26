@@ -4,6 +4,35 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-sirupsen-logrus
+  (package
+    (name "go-github-com-sirupsen-logrus")
+    (version "1.8.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/sirupsen/logrus")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0rvqzic2zz7fpxyizmqxwmhv1m52ii9bgxnqa6km8wsa0l08wh42"))))
+    (build-system go-build-system)
+    (propagated-inputs
+     `(("go-github-com-davecgh-go-spew" ,go-github-com-davecgh-go-spew)
+       ("go-github-com-pmezard-go-difflib" ,go-github-com-pmezard-go-difflib)
+       ("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)
+       ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)
+       ("go-golang-org-x-sys" ,go-golang-org-x-sys)))
+    (arguments
+     '(#:import-path "github.com/sirupsen/logrus"))
+    (home-page "https://github.com/sirupsen/logrus")
+    (synopsis "Structured, pluggable logging for Go")
+    (description "Logrus is a structured logger for Go, completely API
+compatible with the standard library logger.")
+    (license license:expat)))
+
 (define-public go-github-com-klauspost-compress
   (package
     (name "go-github-com-klauspost-compress")
