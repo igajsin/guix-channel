@@ -4,6 +4,36 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+
+(define-public go-github-com-prometheus-procfs
+  (package
+    (name "go-github-com-prometheus-procfs")
+    (version "0.7.3")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/prometheus/procfs")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "00z7ghcb86y2ajx0xvwmn3d18nq4djmvmjn52crgm85gsl442lb4"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/prometheus/procfs"))
+    (propagated-inputs
+      `(("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-golang-org-x-sync" ,go-golang-org-x-sync)
+        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)))
+    (home-page "https://github.com/prometheus/procfs")
+    (synopsis "procfs")
+    (description
+      "Package procfs provides functions to retrieve system, kernel and process
+metrics from the pseudo-filesystem proc.
+")
+    (license license:asl2.0)))
+
+
+
 (define-public go-golang-org-x-image
   (let ((commit "58c23975cae11f062d4b3b0c143fe248faac195d")
         (revision "1"))
