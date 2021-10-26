@@ -4,6 +4,29 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-go-sourcemap-sourcemap
+  (package
+    (name "go-github-com-go-sourcemap-sourcemap")
+    (version "2.1.3+incompatible")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-sourcemap/sourcemap")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "08i1xysiqbqzip3xjlkwivg8cbcym83hxwyzkbmjy0z7y8y5fy3r"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-sourcemap/sourcemap"))
+    (home-page "https://github.com/go-sourcemap/sourcemap")
+    (synopsis "Source maps consumer for Golang")
+    (description
+      "API docs: @url{https://godoc.org/github.com/go-sourcemap/sourcemap,https://godoc.org/github.com/go-sourcemap/sourcemap}.
+Examples: @url{https://godoc.org/github.com/go-sourcemap/sourcemap#pkg-examples,https://godoc.org/github.com/go-sourcemap/sourcemap#pkg-examples}.
+Spec: @url{https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit,https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit}.")
+    (license license:bsd-2)))
+
 (define-public go-github-com-masterminds-sprig
   (package
     (name "go-github-com-masterminds-sprig")
