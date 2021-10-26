@@ -4,6 +4,33 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-golang-freetype
+  (let ((commit "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4")
+        (revision "1"))
+    (package
+      (name "go-github-com-golang-freetype")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                       (url "https://github.com/golang/freetype")
+                       (commit commit)))
+                (file-name (string-append "go-github-com-golang-freetype-"
+                                          version "-checkout"))
+                (sha256
+                 (base32
+                  "194w3djc6fv1rgcjqds085b9fq074panc5vw582bcb8dbfzsrqxc"))))
+      (build-system go-build-system)
+      (arguments
+       `(#:import-path "github.com/golang/freetype"))
+      (propagated-inputs
+       `(("go-golang-org-x-image" ,go-golang-org-x-image)))
+      (home-page "https://github.com/golang/freetype")
+      (synopsis "Freetype font rasterizer in the Go programming language")
+      (description "The Freetype font rasterizer in the Go programming language.")
+      (license (list license:freetype
+                     license:gpl2+)))))
+
 (define-public go-github-com-opentracing-opentracing-go
   (package
     (name "go-github-com-opentracing-opentracing-go")
