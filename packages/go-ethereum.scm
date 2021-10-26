@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+
+(define-public go-github-com-spf13-afero
+  (package
+    (name "go-github-com-spf13-afero")
+    (version "1.2.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/spf13/afero")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0j9r65qgd58324m85lkl49vk9dgwd62g7dwvkfcm3k6i9dc555a9"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "github.com/spf13/afero"))
+    (propagated-inputs
+     `(("golang.org/x/text" ,go-golang-org-x-text)))
+    (home-page "https://github.com/spf13/afero")
+    (synopsis "File system abstraction for Go")
+    (description
+     "This package provides a file system abstraction for Go.")
+    (license license:asl2.0)))
+
 (define-public go-github-com-mattn-go-colorable
   (package
     (name "go-github-com-mattn-go-colorable")
