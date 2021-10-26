@@ -4,6 +4,39 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-honnef-co-go-tools
+  (package
+    (name "go-honnef-co-go-tools")
+    (version "0.1.3")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/dominikh/go-tools")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "17li8jbw3cpn59kpcl3j3r2an4wkx3fc81xn0j4xgbjpkxh9493n"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "honnef.co/go/tools"
+       #:tests? #f
+       ;; Source-only package
+       #:phases
+       (modify-phases %standard-phases
+         (delete 'build))))
+    (propagated-inputs
+     `(("go-golang-org-x-tools" ,go-golang-org-x-tools)
+       ("go-github-com-kisielk-gotool",go-github-com-kisielk-gotool)
+       ("go-github-com-burntsushi-toml" ,go-github-com-burntsushi-toml)))
+    (home-page "https://honnef.co/go/tools")
+    (synopsis "Staticcheck advanced Go linter")
+    (description
+     "Staticcheck is a state of the art linter for the Go programming language.
+Using static analysis, it finds bugs and performance issues, offers
+simplifications, and enforces style rules.")
+    (license license:expat)))
+
 (define-public go-github-com-spf13-pflag
   (package
     (name "go-github-com-spf13-pflag")
