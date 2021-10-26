@@ -4,6 +4,345 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+
+;;
+(define-public go-modernc-org-internal
+  (package
+    (name "go-modernc-org-internal")
+    (version "1.0.2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/internal")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1fgcv0c7xvdihzb76ja5qa5wjqarywxxhzi8dx2bsy8ch6njx2wz"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/internal"))
+    (propagated-inputs
+      `(("go-modernc-org-mathutil" ,go-modernc-org-mathutil)
+        ("go-modernc-org-fileutil" ,go-modernc-org-fileutil)
+        ("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-github-com-edsrzf-mmap-go" ,go-github-com-edsrzf-mmap-go)))
+    (home-page "https://modernc.org/internal")
+    (synopsis "internal")
+    (description "Things that cannot be imported by 3rd party packages.")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-ir
+  (package
+    (name "go-modernc-org-ir")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/ir")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0n2jql990xwgjfhyjqnq6cmras0darzn9cyvnz3cv974vc1p818i"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/ir"))
+    (home-page "https://modernc.org/ir")
+    (synopsis "ir")
+    (description
+      "Package ir implements intermediate representation of compiled programs.
+(Work In Progress)
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-token
+  (package
+    (name "go-modernc-org-token")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/token")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0gs2231h6i7xmsadyxqcqivkki74bsxwq2n7h0nkbm96fsmgxrd7"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/token"))
+    (home-page "https://modernc.org/token")
+    (synopsis "token")
+    (description
+      "Package token is variant of the stdlib package token with types FileSet and
+Token removed.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-cc
+  (package
+    (name "go-modernc-org-cc")
+    (version "1.0.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/cc")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "09vv400zpb6cbqjz74lvawin16v9mp97gkk2plbpbfmzjda0n4lz"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/cc"))
+    (propagated-inputs
+      `(("go-modernc-org-xc" ,go-modernc-org-xc)
+        ("go-modernc-org-token" ,go-modernc-org-token)
+        ("go-modernc-org-strutil" ,go-modernc-org-strutil)
+        ("go-modernc-org-mathutil" ,go-modernc-org-mathutil)
+        ("go-modernc-org-ir" ,go-modernc-org-ir)
+        ("go-modernc-org-internal" ,go-modernc-org-internal)
+        ("go-modernc-org-golex" ,go-modernc-org-golex)
+        ("go-github-com-remyoudompheng-bigfft"
+         ,go-github-com-remyoudompheng-bigfft)
+        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)
+        ("go-github-com-dustin-go-humanize"
+         ,go-github-com-dustin-go-humanize)))
+    (home-page "https://modernc.org/cc")
+    (synopsis "cc")
+    (description "Package cc is a C99 compiler front end.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-lex
+  (package
+    (name "go-modernc-org-lex")
+    (version "1.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/lex")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "10nxw9ga1zfzcxlqmynbnwwk7mprx61s41jsw7hpf3v1if63yjm2"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/lex"))
+    (propagated-inputs
+      `(("go-modernc-org-lexer" ,go-modernc-org-lexer)
+        ("go-modernc-org-fileutil" ,go-modernc-org-fileutil)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://modernc.org/lex")
+    (synopsis #f)
+    (description
+      "Package lex provides support for a *nix (f)lex like tool on .l sources.
+The syntax is similar to a subset of (f)lex, see also: @url{http://flex.sourceforge.net/manual/Format.html#Format,http://flex.sourceforge.net/manual/Format.html#Format}
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-fileutil
+  (package
+    (name "go-modernc-org-fileutil")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/fileutil")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1ailb6np58qyk12qqxwm8v2bpqcy95120d0ahyx31sl8qnc92khy"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/fileutil"))
+    (home-page "https://modernc.org/fileutil")
+    (synopsis #f)
+    (description "Package fileutil collects some file utility functions.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-lexer
+  (package
+    (name "go-modernc-org-lexer")
+    (version "1.0.2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/lexer")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "00nlpb76ja844ifpmhxxvgyv7r5dvv6sg1af9wiwwz89nh7nmwmx"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/lexer"))
+    (propagated-inputs
+      `(("go-modernc-org-fileutil" ,go-modernc-org-fileutil)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://modernc.org/lexer")
+    (synopsis #f)
+    (description
+      "Package lexer provides generating actionless scanners (lexeme recognizers) at run time.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-golex
+  (package
+    (name "go-modernc-org-golex")
+    (version "1.0.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/golex")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1iv08q3c6rj39v712b3g76dj28xjip1a09vdawsx6daa1dcs1gdc"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/golex"))
+    (propagated-inputs
+      `(("go-modernc-org-lexer" ,go-modernc-org-lexer)
+        ("go-modernc-org-lex" ,go-modernc-org-lex)
+        ("go-modernc-org-fileutil" ,go-modernc-org-fileutil)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://modernc.org/golex")
+    (synopsis #f)
+    (description
+      "Golex is a lex/flex like (not fully POSIX lex compatible) utility.
+It renders .l formated data (@url{http://flex.sourceforge.net/manual/Format.html#Format,http://flex.sourceforge.net/manual/Format.html#Format}) to Go source code.
+The .l data can come from a file named in a command line argument.
+If no non-opt args are given, golex reads stdin.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-remyoudompheng-bigfft
+  (package
+    (name "go-github-com-remyoudompheng-bigfft")
+    (version "0.0.0-20200410134404-eec4a21b6bb0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/remyoudompheng/bigfft")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0x01k3caqmyjivfgydkhg2m4y823xlhnzknp0xdlapap0rn298yp"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/remyoudompheng/bigfft"))
+    (home-page "https://github.com/remyoudompheng/bigfft")
+    (synopsis #f)
+    (description
+      "Package bigfft implements multiplication of big.Int using FFT.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-mathutil
+  (package
+    (name "go-modernc-org-mathutil")
+    (version "1.4.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/mathutil")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0xzs3a29djlqfqmdjfblgv1adb4v11z6557mprx6d92a1byamdwv"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/mathutil"))
+    (propagated-inputs
+      `(("go-github-com-remyoudompheng-bigfft"
+         ,go-github-com-remyoudompheng-bigfft)))
+    (home-page "https://modernc.org/mathutil")
+    (synopsis #f)
+    (description
+      "Package mathutil provides utilities supplementing the standard 'math' and
+'math/rand' packages.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-strutil
+  (package
+    (name "go-modernc-org-strutil")
+    (version "1.1.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/strutil")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1fql70xqpa0v865j6ikj8nz6vmbdwfkpbsnxzz9hk721xzaz8fl0"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/strutil"))
+    (propagated-inputs `(("go-modernc-org-mathutil" ,go-modernc-org-mathutil)))
+    (home-page "https://modernc.org/strutil")
+    (synopsis #f)
+    (description
+      "Package strutil collects utils supplemental to the standard strings package.
+")
+    (license license:bsd-3)))
+
+(define-public go-modernc-org-xc
+  (package
+    (name "go-modernc-org-xc")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gitlab.com/cznic/xc")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "00hrgpq6xwfzbkgdma5q1ds53r9fzyhhk4aybcaqjfzm2ps7cc09"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "modernc.org/xc"))
+    (home-page "https://modernc.org/xc")
+    (synopsis "xc")
+    (description
+      "Package xc provides cross language compiler support/utility stuff.
+")
+    (license license:bsd-3)))
+
+(define-public go-gonum-org-v1-netlib
+  (package
+    (name "go-gonum-org-v1-netlib")
+    (version "0.0.0-20210927171344-7274ea1d1842")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/gonum/netlib")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1r1vyb3zbxnqxkv1pyj6jqd8xs7rwp3sm234rcip91zb39inj2jh"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "gonum.org/v1/netlib"
+       #:unpack-path "github.com/gonum/netlib"))
+    (propagated-inputs
+      `(("go-modernc-org-xc" ,go-modernc-org-xc)
+        ("go-modernc-org-strutil" ,go-modernc-org-strutil)
+        ("go-modernc-org-mathutil" ,go-modernc-org-mathutil)
+        ("go-modernc-org-golex" ,go-modernc-org-golex)
+        ("go-modernc-org-cc" ,go-modernc-org-cc)
+        ("go-gonum-org-v1-gonum" ,go-gonum-org-v1-gonum)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)
+        ("go-github-com-remyoudompheng-bigfft"
+         ,go-github-com-remyoudompheng-bigfft)))
+    (home-page "https://github.com/gonum/netlib")
+    (synopsis "Gonum NETLIB")
+    (description
+      "Wrapper packages providing an interface to the NETLIB C BLAS and LAPACKE implementations.")
+    (license license:bsd-3)))
+
+
+;;
+
 (define-public go-go-uber-org-zap
   (package
     (name "go-go-uber-org-zap")
