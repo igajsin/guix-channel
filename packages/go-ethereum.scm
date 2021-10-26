@@ -4,6 +4,33 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-syndtr-goleveldb
+  (package
+    (name "go-github-com-syndtr-goleveldb")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/syndtr/goleveldb")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "042k0gbzs5waqpxmd7nv5h93mlva861s66c3s9gfg1fym5dx4vmd"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/syndtr/goleveldb"))
+    (propagated-inputs
+      `(("go-github-com-onsi-gomega" ,go-github-com-onsi-gomega)
+        ("go-github-com-onsi-ginkgo" ,go-github-com-onsi-ginkgo)
+        ("go-github-com-golang-snappy" ,go-github-com-golang-snappy)))
+    (home-page "https://github.com/syndtr/goleveldb")
+    (synopsis "Installation")
+    (description
+      "This is an implementation of the @url{http:code.google.com/p/leveldb,LevelDB key/value database} in the @url{http:golang.org,Go programming language}.")
+    (license license:bsd-2)))
+
+
+
 (define-public go-github-com-masterminds-goutils
   (package
     (name "go-github-com-masterminds-goutils")
