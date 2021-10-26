@@ -4,6 +4,35 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-imdario-mergo
+  (package
+    (name "go-github-com-imdario-mergo")
+    (version "0.3.10")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/imdario/mergo")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "09h765p8yby9r8s0a3hv5kl8n2i382mda76wmvk48w1cc1w9s92p"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "github.com/imdario/mergo"))
+    (native-inputs
+     `(("go-gopkg-in-yaml-v2" ,go-gopkg-in-yaml-v2)))
+    (home-page "https://github.com/imdario/mergo/")
+    (synopsis "Helper to merge structs and maps in Golang")
+    (description "Helper to merge structs and maps in Golang.  Useful for
+configuration default values, avoiding messy if-statements.
+
+Mergo merges same-type structs and maps by setting default values in
+zero-value fields.  Mergo won't merge unexported (private) fields.  It will do
+recursively any exported one.  It also won't merge structs inside
+maps (because they are not addressable using Go reflection).")
+    (license license:bsd-3)))
+
 (define-public go-github-com-mitchellh-copystructure
   (package
     (name "go-github-com-mitchellh-copystructure")
