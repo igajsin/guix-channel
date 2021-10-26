@@ -4,6 +4,26 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-urfave-cli-v2
+  (package
+    (inherit go-github-com-urfave-cli)
+    (name "go-github-com-urfave-cli-v2")
+    (version "2.3.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/urfave/cli")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "08pvn7gyfznni72xrxfh2x6xxa8ykr7l1ka278js8g8qkh71bj8l"))
+       ;; XXX: Remove patch when updating.
+       (patches
+        (search-patches "go-github-com-urfave-cli-v2-fix-tests.patch"))))
+    (arguments
+     '(#:import-path "github.com/urfave/cli/v2"))))
+
 (define-public go-honnef-co-go-tools
   (package
     (name "go-honnef-co-go-tools")
