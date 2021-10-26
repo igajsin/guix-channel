@@ -4,6 +4,31 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-sourcegraph-com-sourcegraph-syntaxhighlight
+  (package
+    (name "go-sourcegraph-com-sourcegraph-syntaxhighlight")
+    (version "0.0.0-20170531221838-bd320f5d308e")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/sourcegraph/syntaxhighlight")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "01pf2ny2q76hwy05d1407799hah7qbnaqww5dszba287shraar92"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "sourcegraph.com/sourcegraph/syntaxhighlight"))
+    (home-page "https://sourcegraph.com/sourcegraph/syntaxhighlight")
+    (synopsis "syntaxhighlight")
+    (description
+      "Package syntaxhighlight provides syntax highlighting for code.  It currently
+uses a language-independent lexer and performs decently on JavaScript, Java,
+Ruby, Python, Go, and C.
+")
+    (license license:bsd-3)))
+
+
 (define-public go-github-com-sergi-go-diff
   (package
     (name "go-github-com-sergi-go-diff")
