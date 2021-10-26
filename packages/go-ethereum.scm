@@ -4,6 +4,71 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-mwitkow-go-conntrack
+  (package
+    (name "go-github-com-mwitkow-go-conntrack")
+    (version "0.0.0-20190716064945-2f068394615f")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/mwitkow/go-conntrack")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0ymjmy12ks7smgwmrwsa5kf07d9w5kpk1dn650azlzr61b561aw7"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/mwitkow/go-conntrack"))
+    (home-page "https://github.com/mwitkow/go-conntrack")
+    (synopsis "Go tracing and monitoring (Prometheus) for")
+    (description
+      "@url{https://prometheus.io/,Prometheus} monitoring and @url{https://godoc.org/golang.org/x/net/trace#EventLog,(code x/net/trace)} tracing wrappers @code{net.Conn}, both inbound (@code{net.Listener}) and outbound (@code{net.Dialer}).")
+    (license license:asl2.0)))
+
+(define-public go-github-com-prometheus-common
+  (package
+    (name "go-github-com-prometheus-common")
+    (version "0.32.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/prometheus/common")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0501dwlv427vr78c59h4z25vxzkzjx76haydjj4pql1sx44546vv"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/prometheus/common"))
+    (propagated-inputs
+      `(("go-gopkg-in-yaml-v2" ,go-gopkg-in-yaml-v2)
+        ("go-gopkg-in-alecthomas-kingpin-v2"
+         ,go-gopkg-in-alecthomas-kingpin-v2)
+        ("go-golang-org-x-oauth2" ,go-golang-org-x-oauth2)
+        ("go-golang-org-x-net" ,go-golang-org-x-net)
+        ("go-github-com-prometheus-client-model"
+         ,go-github-com-prometheus-client-model)
+        ("go-github-com-prometheus-client-golang"
+         ,go-github-com-prometheus-client-golang)
+        ("go-github-com-pkg-errors" ,go-github-com-pkg-errors)
+        ("go-github-com-mwitkow-go-conntrack"
+         ,go-github-com-mwitkow-go-conntrack)
+        ("go-github-com-matttproud-golang-protobuf-extensions"
+         ,go-github-com-matttproud-golang-protobuf-extensions)
+        ("go-github-com-julienschmidt-httprouter"
+         ,go-github-com-julienschmidt-httprouter)
+        ("go-github-com-golang-protobuf" ,go-github-com-golang-protobuf)
+        ("go-github-com-go-kit-log" ,go-github-com-go-kit-log)))
+    (home-page "https://github.com/prometheus/common")
+    (synopsis "Common")
+    (description
+      "This repository contains Go libraries that are shared across Prometheus
+components and libraries.  They are considered internal to Prometheus, without
+any stability guarantees for external usage.")
+    (license license:asl2.0)))
+
+
+
 (define-public go-github-com-imdario-mergo
   (package
     (name "go-github-com-imdario-mergo")
