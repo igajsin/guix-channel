@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-mattn-go-colorable
+  (package
+    (name "go-github-com-mattn-go-colorable")
+    (version "0.1.8")
+    (home-page "https://github.com/mattn/go-colorable")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url home-page)
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0q34zqwbnls72md8q8mhj368s7p3i4xspvs3rk8fs76s0pn7dr2l"))))
+    (build-system go-build-system)
+    (native-inputs
+     `(("go-github-com-mattn-go-isatty"
+        ,go-github-com-mattn-go-isatty)))
+    (arguments
+     '(#:import-path "github.com/mattn/go-colorable"))
+    (synopsis "Handle ANSI color escapes on Windows")
+    (description "This package provides @code{colorable}, a module that
+makes it possible to handle ANSI color escapes on Windows.")
+    (license license:expat)))
+
 (define-public go-github-com-prometheus-client-golang
   (package
     (name "go-github-com-prometheus-client-golang")
