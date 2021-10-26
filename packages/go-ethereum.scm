@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-go-uber-org-atomic
+  (package
+    (name "go-go-uber-org-atomic")
+    (version "1.8.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/uber-go/atomic")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0grswsk7nkf7zmmychf6aj6032shyag1kgs6zf7qwxyn55dym1v8"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "go.uber.org/atomic"))
+    (native-inputs
+     `(("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)
+       ("go-github-com-davecgh-go-spew" ,go-github-com-davecgh-go-spew)))
+    (home-page "https://go.uber.org/atomic")
+    (synopsis "Wrapper types for sync/atomic")
+    (description
+     "This package provides simple wrappers for primitive types to enforce
+atomic access.")
+    (license license:expat)))
+
 (define-public go-github-com-frankban-quicktest
   (package
     (name "go-github-com-frankban-quicktest")
