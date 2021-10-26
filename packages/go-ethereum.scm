@@ -4,6 +4,28 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-gopkg-in-yaml-v3
+  (package
+    (name "go-gopkg-in-yaml-v3")
+    (version "3.0.0-20210107192922-496545a6307b")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://gopkg.in/yaml.v3")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "06f4lnrp494wqaygv09dggr2dwf3z2bawqhnlnnwiamg5y787k4g"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path "gopkg.in/yaml.v3" #:unpack-path "gopkg.in/yaml.v3"))
+    (propagated-inputs `(("go-gopkg-in-check-v1" ,go-gopkg-in-check-v1)))
+    (home-page "https://gopkg.in/yaml.v3")
+    (synopsis "YAML support for the Go language")
+    (description "Package yaml implements YAML support for the Go language.")
+    (license license:asl2.0)))
+
 (define-public go-github-com-kr-text
   (package
     (name "go-github-com-kr-text")
