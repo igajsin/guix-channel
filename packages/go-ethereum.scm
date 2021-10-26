@@ -4,6 +4,188 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-agl-ed25519
+  (package
+    (name "go-github-com-agl-ed25519")
+    (version "0.0.0-20200225211852-fd4d107ace12")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/agl/ed25519")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "13hq6sfbfnhp3734pnmka58hidfz17y18y9a40qqqb3j3f85g2dp"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/agl/ed25519"))
+    (home-page "https://github.com/agl/ed25519")
+    (synopsis #f)
+    (description
+      "Package ed25519 implements the Ed25519 signature algorithm.  See
+@url{http://ed25519.cr.yp.to/,http://ed25519.cr.yp.to/}.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-dchest-blake256
+  (package
+    (name "go-github-com-dchest-blake256")
+    (version "1.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/dchest/blake256")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "00244qhky34ym53dqxzhlmyqx80b3966w5shlnwd6v8vcs7iza4n"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/dchest/blake256"))
+    (home-page "https://github.com/dchest/blake256")
+    (synopsis #f)
+    (description #f)
+    (license #f)))
+
+(define-public go-github-com-decred-dcrd-crypto-blake256
+  (package
+    (name "go-github-com-decred-dcrd-crypto-blake256")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/decred/dcrd")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0m2mxrkbnr4dfan9ljxq9dd5hhqmpx5n9pd4hnwn5mlj4zgv018a"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path
+        "github.com/decred/dcrd/crypto/blake256"
+        #:unpack-path
+        "github.com/decred/dcrd"))
+    (home-page "https://github.com/decred/dcrd")
+    (synopsis "Package blake256")
+    (description
+      "Package blake256 implements BLAKE-256 and BLAKE-224 hash functions (SHA-3
+candidate).
+")
+    (license license:isc)))
+
+(define-public go-github-com-decred-base58
+  (package
+    (name "go-github-com-decred-base58")
+    (version "1.0.3")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/decred/base58")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "112hqxwld7r203q18zn1rvg1zyac65ak6jy6ayscbnppif9287h6"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/decred/base58"))
+    (propagated-inputs
+      `(("go-github-com-decred-dcrd-crypto-blake256"
+         ,go-github-com-decred-dcrd-crypto-blake256)))
+    (home-page "https://github.com/decred/base58")
+    (synopsis "base58")
+    (description
+      "Package base58 provides an API for working with modified base58 and Base58Check
+encodings.
+")
+    (license license:isc)))
+
+(define-public go-github-com-decred-slog
+  (package
+    (name "go-github-com-decred-slog")
+    (version "1.2.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/decred/slog")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1pnrldkvpq04v6392ghyzsccaqd2vf5wxbw38jk23w77f6hqfxy2"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/decred/slog"))
+    (home-page "https://github.com/decred/slog")
+    (synopsis "slog")
+    (description
+      "Package slog defines an interface and default implementation for subsystem
+logging.
+")
+    (license license:isc)))
+
+(define-public go-github-com-jrick-bitset
+  (package
+    (name "go-github-com-jrick-bitset")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/jrick/bitset")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "140mqhxmi00hqmyxpbh5k1i1bacyrbgn18n05yiqnkgzhsnf11sd"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/jrick/bitset"))
+    (home-page "https://github.com/jrick/bitset")
+    (synopsis "bitset")
+    (description
+      "Package bitset provides bitset implementations for bit packing binary
+values into pointers and bytes.
+")
+    (license license:isc)))
+
+(define-public go-github-com-decred-dcrd
+  (package
+    (name "go-github-com-decred-dcrd")
+    (version "1.3.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/decred/dcrd")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0pmm6ahk0s0qgswvchw60vi0qx9ji3dry8dyd85lhav7xlhpy2mx"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/decred/dcrd"))
+    (propagated-inputs
+      `(("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)
+        ("go-github-com-jrick-logrotate" ,go-github-com-jrick-logrotate)
+        ("go-github-com-jrick-bitset" ,go-github-com-jrick-bitset)
+        ("go-github-com-jessevdk-go-flags" ,go-github-com-jessevdk-go-flags)
+        ("go-github-com-gorilla-websocket" ,go-github-com-gorilla-websocket)
+        ("go-github-com-decred-slog" ,go-github-com-decred-slog)
+        ("go-github-com-decred-base58" ,go-github-com-decred-base58)
+        ("go-github-com-dchest-siphash" ,go-github-com-dchest-siphash)
+        ("go-github-com-dchest-blake256" ,go-github-com-dchest-blake256)
+        ("go-github-com-davecgh-go-spew" ,go-github-com-davecgh-go-spew)
+        ("go-github-com-btcsuite-winsvc" ,go-github-com-btcsuite-winsvc)
+        ("go-github-com-btcsuite-snappy-go" ,go-github-com-btcsuite-snappy-go)
+        ("go-github-com-btcsuite-goleveldb" ,go-github-com-btcsuite-goleveldb)
+        ("go-github-com-btcsuite-go-socks" ,go-github-com-btcsuite-go-socks)
+        ("go-github-com-agl-ed25519" ,go-github-com-agl-ed25519)))
+    (home-page "https://github.com/decred/dcrd")
+    (synopsis "dcrd")
+    (description "dcrd is a full-node Decred implementation written in Go.
+")
+    (license license:isc)))
+
+
+
 (define-public go-github-com-willf-bitset
   (package
     (name "go-github-com-willf-bitset")
