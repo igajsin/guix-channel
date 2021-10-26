@@ -4,6 +4,31 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-golang-snappy
+  (package
+    (name "go-github-com-golang-snappy")
+    (version "0.0.4")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/golang/snappy")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "004cw699yz3pdpawhjhpa0y94c4w479nw1rf39zj6h6027kpwv2j"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/golang/snappy"))
+    (home-page "https://github.com/golang/snappy")
+    (synopsis #f)
+    (description
+      "Package snappy implements the Snappy compression format.  It aims for very
+high speeds and reasonable compression.
+")
+    (license license:bsd-3)))
+
+
+
 (define-public go-github-com-mattn-go-isatty
   (package
     (name "go-github-com-mattn-go-isatty")
