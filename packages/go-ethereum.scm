@@ -4,9 +4,9 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
-(define-public go-github-com-gonum-gonum
+(define-public go-gonum-org-v1-gonum
   (package
-    (name "go-github-com-gonum-gonum")
+    (name "go-gonum-org-v1-gonum")
     (version "0.9.3")
     (source
       (origin
@@ -18,7 +18,9 @@
         (sha256
           (base32 "14il40mbxzlpfbhy3rk2bbqfzprsd3zf3nm9l6gblhpvsx85ink5"))))
     (build-system go-build-system)
-    (arguments '(#:import-path "github.com/gonum/gonum"))
+    (arguments '
+     (#:import-path "gonum.org/v1/gonum"
+      #:unpack-path "github.com/gonum/gonum"))
     (propagated-inputs
       `(("go-gonum-org-v1-plot" ,go-gonum-org-v1-plot)
         ("go-gonum-org-v1-netlib" ,go-gonum-org-v1-netlib)
