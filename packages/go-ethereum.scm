@@ -4,6 +4,37 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+
+(define-public go-go-opentelemetry-io-otel-metric
+  (package
+    (name "go-go-opentelemetry-io-otel-metric")
+    (version "1.0.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/open-telemetry/opentelemetry-go")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "021aq1w4pzwf45vqs2pa6jskdn1jj3p4ky6bf7zkkjh8ds44fb6f"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "go.opentelemetry.io/otel/metric"
+       #:unpack-path "github.com/open-telemetry/opentelemetry-go"))
+    (propagated-inputs
+      `(("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)
+        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)))
+    (home-page "https://github.com/open-telemetry/opentelemetry-go")
+    (synopsis "OpenTelemetry-Go")
+    (description
+      "Package otel provides global access to the OpenTelemetry API.  The subpackages of
+the otel package provide an implementation of the OpenTelemetry API.
+")
+    (license #f)))
+
+
+
 (define-public go-github-com-huandu-xstrings
   (package
     (name "go-github-com-huandu-xstrings")
