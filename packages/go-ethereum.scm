@@ -4,6 +4,28 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-fatih-color
+  (package
+    (name "go-github-com-fatih-color")
+    (version "1.8.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                     (url "https://github.com/fatih/color")
+                     (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1zc0zlilf03h121f9jqq3ar0hfm7706547zysxp2qxbm920pz7h0"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/fatih/color"))
+    (synopsis "Print colored text in Go")
+    (description "This package provides an ANSI color package to output
+colorized or SGR defined output to the standard output.")
+    (home-page "https://godoc.org/github.com/fatih/color")
+    (license license:expat)))
+
 (define-public go-github-com-rogpeppe-go-internal
   (package
     (name "go-github-com-rogpeppe-go-internal")
