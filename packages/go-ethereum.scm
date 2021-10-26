@@ -4,6 +4,29 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-willf-bitset
+  (package
+    (name "go-github-com-willf-bitset")
+    (version "1.1.10")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                     (url "https://github.com/willf/bitset")
+                     (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0wpaxg6va3qwd0hq0b8rpb1hswvzzbfm2h8sjmcsdpbkydjjx9zg"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/willf/bitset"))
+    (synopsis "Bitsets in Go")
+    (description "This package provides a Go implementation of bitsets, which
+are a mapping between non-negative integers and boolean values focused on
+efficient space usage.")
+    (home-page "https://github.com/willf/bitset")
+    (license license:bsd-3)))
+
 (define-public go-gonum-org-v1-gonum
   (package
     (name "go-gonum-org-v1-gonum")
