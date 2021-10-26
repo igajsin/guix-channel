@@ -4,6 +4,44 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-prometheus-client-golang
+  (package
+    (name "go-github-com-prometheus-client-golang")
+    (version "1.11.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/prometheus/client_golang")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1xdspykw6wgp0bv7s1r7gklvhr5jfmi59n8bg8zhy3vi0yi902y3"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/prometheus/client_golang"))
+    (propagated-inputs
+      `(("go-google-golang-org-protobuf" ,go-google-golang-org-protobuf)
+        ("go-golang-org-x-text" ,go-golang-org-x-text)
+        ("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-github-com-prometheus-procfs" ,go-github-com-prometheus-procfs)
+        ("go-github-com-prometheus-common" ,go-github-com-prometheus-common)
+        ("go-github-com-prometheus-client-model"
+         ,go-github-com-prometheus-client-model)
+        ("go-github-com-json-iterator-go" ,go-github-com-json-iterator-go)
+        ("go-github-com-golang-protobuf" ,go-github-com-golang-protobuf)
+        ("go-github-com-cespare-xxhash-v2" ,go-github-com-cespare-xxhash-v2)
+        ("go-github-com-beorn7-perks" ,go-github-com-beorn7-perks)))
+    (home-page "https://github.com/prometheus/client_golang")
+    (synopsis "Prometheus Go client library")
+    (description
+      "This is the @url{http://golang.org,Go} client library for
+@url{http://prometheus.io,Prometheus}.  It has two separate parts, one for
+instrumenting application code, and one for creating clients that talk to the
+Prometheus HTTP API.")
+    (license license:asl2.0)))
+
+
+
 (define-public go-github-com-kr-pretty
   (package
     (name "go-github-com-kr-pretty")
