@@ -4,6 +4,33 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-urfave-cli
+  (package
+    (name "go-github-com-urfave-cli")
+    (version "1.22.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/urfave/cli")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "10mcnvi5qmn00vpyk6si8gjka7p654wr9hac4zc9w5h3ickhvbdc"))
+       (patches (search-patches "go-github-com-urfave-cli-fix-tests.patch"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/urfave/cli"))
+    (propagated-inputs
+     `(("go-github-com-go-md2man" ,go-github-com-go-md2man)))
+    (home-page "https://github.com/urfave/cli")
+    (synopsis "Simple, fast, and fun package for building command line apps in Go")
+    (description "@command{cli} is a simple, fast, and fun package for
+building command line apps in Go.  The goal is to enable developers to write
+fast and distributable command line applications in an expressive way.")
+    (license license:expat)))
+
 (define-public go-github-com-urfave-cli-v2
   (package
     (inherit go-github-com-urfave-cli)
