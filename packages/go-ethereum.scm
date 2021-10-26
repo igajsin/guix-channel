@@ -4,6 +4,32 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-google-go-cmp-cmp
+  (package
+    (name "go-github-com-google-go-cmp-cmp")
+    (version "0.5.2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                     (url "https://github.com/google/go-cmp")
+                     (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0qchy411jm9q2l9mf7x3ry2ycaqp9xdhf2nx14qrpzcxfigv2705"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/google/go-cmp/cmp"
+       #:unpack-path "github.com/google/go-cmp"))
+    (propagated-inputs
+     `(("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)))
+    (synopsis "Determine equality of values in Go")
+    (description "This package provides a more powerful and safer
+alternative to @code{reflect.DeepEqual} for comparing whether two values
+are semantically equal in Go (for writing tests).")
+    (home-page "https://godoc.org/github.com/google/go-cmp/cmp")
+    (license license:asl2.0)))
+
 (define-public go-go-uber-org-atomic
   (package
     (name "go-go-uber-org-atomic")
