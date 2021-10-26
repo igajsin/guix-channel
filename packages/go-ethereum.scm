@@ -4,6 +4,45 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-google-golang-org-grpc-cmd-protoc-gen-go-grpc
+  (package
+    (name "go-google-golang-org-grpc-cmd-protoc-gen-go-grpc")
+    (version "1.41.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/grpc/grpc-go")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "10a0n2lmvl8zqhcswz3sjyqil0sk0mvp892d04lfnq61wq1ssgsn"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "google.golang.org/grpc"
+       #:import-path "google.golang.org/grpc/cmd/protoc-gen-go"))
+    (propagated-inputs
+      `(("go-google-golang-org-protobuf" ,go-google-golang-org-protobuf)
+        ("go-google-golang-org-genproto" ,go-google-golang-org-genproto)
+        ("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-golang-org-x-oauth2" ,go-golang-org-x-oauth2)
+        ("go-golang-org-x-net" ,go-golang-org-x-net)
+        ("go-github-com-google-uuid" ,go-github-com-google-uuid)
+        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)
+        ("go-github-com-golang-protobuf" ,go-github-com-golang-protobuf)
+        ("go-github-com-golang-glog" ,go-github-com-golang-glog)
+        ("go-github-com-envoyproxy-go-control-plane"
+         ,go-github-com-envoyproxy-go-control-plane)
+        ("go-github-com-cncf-udpa-go" ,go-github-com-cncf-udpa-go)
+        ("go-github-com-cespare-xxhash-v2" ,go-github-com-cespare-xxhash-v2)))
+    (home-page "https://google.golang.org/grpc")
+    (synopsis "gRPC-Go")
+    (description "Package grpc implements an RPC system called gRPC.
+")
+    (license license:asl2.0)))
+
+
+
 (define-public go-github-com-gorilla-mux
   (package
     (name "go-github-com-gorilla-mux")
