@@ -4,6 +4,48 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-decred-dcrd-lru
+  (package
+    (name "go-github-com-decred-dcrd-lru")
+    (version "1.3.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/decred/dcrd")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0pmm6ahk0s0qgswvchw60vi0qx9ji3dry8dyd85lhav7xlhpy2mx"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/decred/dcrd/lru"
+       #:unpack-path "github.com/decred/dcrd"))
+    (propagated-inputs
+      `(("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)
+        ("go-github-com-jrick-logrotate" ,go-github-com-jrick-logrotate)
+        ("go-github-com-jrick-bitset" ,go-github-com-jrick-bitset)
+        ("go-github-com-jessevdk-go-flags" ,go-github-com-jessevdk-go-flags)
+        ("go-github-com-gorilla-websocket" ,go-github-com-gorilla-websocket)
+        ("go-github-com-decred-slog" ,go-github-com-decred-slog)
+        ("go-github-com-decred-base58" ,go-github-com-decred-base58)
+        ("go-github-com-dchest-siphash" ,go-github-com-dchest-siphash)
+        ("go-github-com-dchest-blake256" ,go-github-com-dchest-blake256)
+        ("go-github-com-davecgh-go-spew" ,go-github-com-davecgh-go-spew)
+        ("go-github-com-btcsuite-winsvc" ,go-github-com-btcsuite-winsvc)
+        ("go-github-com-btcsuite-snappy-go" ,go-github-com-btcsuite-snappy-go)
+        ("go-github-com-btcsuite-goleveldb" ,go-github-com-btcsuite-goleveldb)
+        ("go-github-com-btcsuite-go-socks" ,go-github-com-btcsuite-go-socks)
+        ("go-github-com-agl-ed25519" ,go-github-com-agl-ed25519)))
+    (home-page "https://github.com/decred/dcrd")
+    (synopsis "dcrd")
+    (description "dcrd is a full-node Decred implementation written in Go.
+")
+    (license license:isc)))
+
+
+
 (define-public go-github-com-syndtr-goleveldb
   (package
     (name "go-github-com-syndtr-goleveldb")
