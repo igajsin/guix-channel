@@ -4,6 +4,35 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-golang-org-x-mod
+  (package
+    (name "go-golang-org-x-mod")
+    (version "0.5.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://go.googlesource.com/mod")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "11ck0f35pa91hhxpf98igmj6gg0lms3b3pjm1y7sna1zz52m8f09"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "golang.org/x/mod"))
+    (propagated-inputs
+      `(("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)
+        ("go-golang-org-x-tools" ,go-golang-org-x-tools)
+        ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)))
+    (home-page "https://golang.org/x/mod")
+    (synopsis "mod")
+    (description
+      "This repository holds packages for writing tools
+that work directly with Go module mechanics.
+That is, it is for direct manipulation of Go modules themselves.")
+    (license license:bsd-3)))
+
+
+
 (define-public go-google-golang-org-grpc-cmd-protoc-gen-go-grpc
   (package
     (name "go-google-golang-org-grpc-cmd-protoc-gen-go-grpc")
