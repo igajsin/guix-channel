@@ -55,7 +55,7 @@ into binaries for arm64, arm or amd64, using
 @url{https://github.com/eliasnaur/swiftshader,SwiftShader} with a few
 modifications.  A runtime implemented in C and Go is available for running the
 resulting binaries.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-gioui-org-shader
   (package
@@ -79,7 +79,7 @@ resulting binaries.")
       "This repository contains the source code for the @url{https://gioui.org,Gio}
 project.  It also contains the generators and dereived versions for use with the
 GPU APIs supported by Gio.")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-gioui-org
   (package
@@ -107,7 +107,7 @@ GPU APIs supported by Gio.")
     (description
       "Immediate mode GUI programs in Go for Android, iOS, macOS, Linux,
 FreeBSD, OpenBSD, Windows, and WebAssembly (experimental).")
-    (license unknown-license!)))
+    (license license:expat)))
 
 (define-public go-github-com-ajstarks-svgo
   (package
@@ -134,7 +134,7 @@ FreeBSD, OpenBSD, Windows, and WebAssembly (experimental).")
       "Package svg generates SVG as defined by the Scalable Vector Graphics 1.1 Specification (<@url{http://www.w3.org/TR/SVG11/,http://www.w3.org/TR/SVG11/}>).
 Output goes to the specified io.Writer.
 ")
-    (license unknown-license!)))
+    (license license:cc-by4.0)))
 
 (define-public go-github-com-go-fonts-dejavu
   (package
