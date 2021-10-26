@@ -4,6 +4,29 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-golang-org-x-time
+  (package
+    (name "go-golang-org-x-time")
+    (version "0.0.0-20210723032227-1f47c861a9ac")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://go.googlesource.com/time")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1drd4fww92m6k12bh90c59l85rl1j48vgxgax1ki3138gf3iaa33"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "golang.org/x/time"))
+    (home-page "https://golang.org/x/time")
+    (synopsis "Go Time")
+    (description "This repository provides supplementary Go time packages.")
+    (license license:bsd-3)))
+
+
+
+
 (define-public go-golang-org-x-mod
   (package
     (name "go-golang-org-x-mod")
