@@ -4,6 +4,40 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-masterminds-sprig
+  (package
+    (name "go-github-com-masterminds-sprig")
+    (version "3.1.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/Masterminds/sprig")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0wwi8n2adjc5jlga25lqq0hrz4jcgd5vpll68y2dfji034caaq18"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:tests? #f ;network tests only
+       #:import-path "github.com/Masterminds/sprig"))
+    (native-inputs
+     `(("go-github-com-masterminds-goutils" ,go-github-com-masterminds-goutils)
+       ("go-github-com-masterminds-semver" ,go-github-com-masterminds-semver)
+       ("go-github-com-google-uuid" ,go-github-com-google-uuid)
+       ("go-github-com-huandu-xstrings" ,go-github-com-huandu-xstrings)
+       ("go-github-com-imdario-mergo" ,go-github-com-imdario-mergo)
+       ("go-github-com-mitchellh-reflectwalk" ,go-github-com-mitchellh-reflectwalk)
+       ("go-github-com-mitchellh-copystructure" ,go-github-com-mitchellh-copystructure)
+       ("go-github-com-spf13-cast" ,go-github-com-spf13-cast)
+       ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)
+       ("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)))
+    (home-page "https://github.com/Masterminds/sprig/")
+    (synopsis "Template functions for Go templates")
+    (description "Sprig is a library that provides more than 100 commonly used
+template functions.")
+    (license license:expat)))
+
 (define-public go-sourcegraph-com-sourcegraph-syntaxhighlight
   (package
     (name "go-sourcegraph-com-sourcegraph-syntaxhighlight")
