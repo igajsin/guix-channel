@@ -4,6 +4,446 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-gonum-gonum
+  (package
+    (name "go-github-com-gonum-gonum")
+    (version "0.9.3")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/gonum/gonum")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "14il40mbxzlpfbhy3rk2bbqfzprsd3zf3nm9l6gblhpvsx85ink5"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/gonum/gonum"))
+    (propagated-inputs
+      `(("go-gonum-org-v1-plot" ,go-gonum-org-v1-plot)
+        ("go-gonum-org-v1-netlib" ,go-gonum-org-v1-netlib)
+        ("go-golang-org-x-tools" ,go-golang-org-x-tools)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://github.com/gonum/gonum")
+    (synopsis "Gonum")
+    (description
+      "The core packages of the gonum suite are written in pure Go with some assembly.
+Installation is done using @code{go get}.")
+    (license license:bsd-3)))
+
+
+(define-public go-gioui-org-cpu
+  (package
+    (name "go-gioui-org-cpu")
+    (version "0.0.0-20210817075930-8d6a761490d2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://git.sr.ht/~eliasnaur/gio-cpu")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "11famy22b8cx5aizaq2x7n48r0j36hdkkc04jqc4rl7nv72akwx8"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "gioui.org/cpu"))
+    (home-page "https://gioui.org/cpu")
+    (synopsis "Compile and run compute programs on CPU")
+    (description
+      "This projects contains the compiler for turning Vulkan SPIR-V compute shaders
+into binaries for arm64, arm or amd64, using
+@url{https://github.com/eliasnaur/swiftshader,SwiftShader} with a few
+modifications.  A runtime implemented in C and Go is available for running the
+resulting binaries.")
+    (license unknown-license!)))
+
+(define-public go-gioui-org-shader
+  (package
+    (name "go-gioui-org-shader")
+    (version "1.0.6")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://git.sr.ht/~eliasnaur/gio-shader")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0xpralzzcgcsfakmdp771cb084c98jxacg2aq19lxzwdi5471z4s"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "gioui.org/shader"))
+    (propagated-inputs `(("go-gioui-org-cpu" ,go-gioui-org-cpu)))
+    (home-page "https://gioui.org/shader")
+    (synopsis "GPU programs for the Gio project")
+    (description
+      "This repository contains the source code for the @url{https://gioui.org,Gio}
+project.  It also contains the generators and dereived versions for use with the
+GPU APIs supported by Gio.")
+    (license unknown-license!)))
+
+(define-public go-gioui-org
+  (package
+    (name "go-gioui-org")
+    (version "0.0.0-20211026101311-9cf7cc75f468")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://git.sr.ht/~eliasnaur/gio")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "182srjmdn2jz561d3i2vq99lnhabnp2jdsz2z2ifwm9axdf8q1ry"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "gioui.org"))
+    (propagated-inputs
+      `(("go-gioui-org-shader" ,go-gioui-org-shader)
+        ("go-gioui-org-cpu" ,go-gioui-org-cpu)
+        ("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-golang-org-x-image" ,go-golang-org-x-image)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://gioui.org")
+    (synopsis "Gio -")
+    (description
+      "Immediate mode GUI programs in Go for Android, iOS, macOS, Linux,
+FreeBSD, OpenBSD, Windows, and WebAssembly (experimental).")
+    (license unknown-license!)))
+
+(define-public go-github-com-ajstarks-svgo
+  (package
+    (name "go-github-com-ajstarks-svgo")
+    (version "0.0.0-20211024235047-1546f124cd8b")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/ajstarks/svgo")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1h0y8c1cw49lm0f324kvgvwc24q6r64pzzzrqpfgp2wd9ljszfnd"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/ajstarks/svgo"))
+    (propagated-inputs
+      `(("go-honnef-co-go-tools" ,go-honnef-co-go-tools)
+        ("go-github-com-ajstarks-deck-generate"
+         ,go-github-com-ajstarks-deck-generate)))
+    (home-page "https://github.com/ajstarks/svgo")
+    (synopsis "SVGo: A Go library for SVG generation")
+    (description
+      "Package svg generates SVG as defined by the Scalable Vector Graphics 1.1 Specification (<@url{http://www.w3.org/TR/SVG11/,http://www.w3.org/TR/SVG11/}>).
+Output goes to the specified io.Writer.
+")
+    (license unknown-license!)))
+
+(define-public go-github-com-go-fonts-dejavu
+  (package
+    (name "go-github-com-go-fonts-dejavu")
+    (version "0.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-fonts/dejavu")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1kax2sxfn30p30q0l14bi9rdmidr120hdhv2fkcjjsac1ngxvj39"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-fonts/dejavu"))
+    (propagated-inputs `(("go-golang-org-x-image" ,go-golang-org-x-image)))
+    (home-page "https://github.com/go-fonts/dejavu")
+    (synopsis "dejavu")
+    (description "Package dejavu holds TTF data of the DejaVu fonts.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-go-fonts-latin-modern
+  (package
+    (name "go-github-com-go-fonts-latin-modern")
+    (version "0.2.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-fonts/latin-modern")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0mwkvg5y8pn8l1yhq3m522qqvfdykn85b01rkmp4wgk9hz53796l"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-fonts/latin-modern"))
+    (propagated-inputs `(("go-golang-org-x-image" ,go-golang-org-x-image)))
+    (home-page "https://github.com/go-fonts/latin-modern")
+    (synopsis "latin-modern")
+    (description "Package lm holds TTF data of the Latin Modern fonts.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-go-fonts-liberation
+  (package
+    (name "go-github-com-go-fonts-liberation")
+    (version "0.2.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-fonts/liberation")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0232xql47b0nkv86kx6qa38z9mz5r7lza9gdhd1baf1kralyh2rd"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-fonts/liberation"))
+    (propagated-inputs `(("go-golang-org-x-image" ,go-golang-org-x-image)))
+    (home-page "https://github.com/go-fonts/liberation")
+    (synopsis "liberation")
+    (description
+      "Package liberation holds TTF data of the Liberation fonts.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-go-fonts-stix
+  (package
+    (name "go-github-com-go-fonts-stix")
+    (version "0.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-fonts/stix")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "16bcvp9hz8fwyjwxxyl563zr4g9m8jxwaqd3sqcnk9vzcnrcnk44"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-fonts/stix"))
+    (propagated-inputs `(("go-golang-org-x-image" ,go-golang-org-x-image)))
+    (home-page "https://github.com/go-fonts/stix")
+    (synopsis "stix")
+    (description "Package stix holds TTF data of the STIX2 fonts.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-go-latex-latex
+  (package
+    (name "go-github-com-go-latex-latex")
+    (version "0.0.0-20210823091927-c0d11ff05a81")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-latex/latex")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1gp9fjh19nhwfml8js07y22qfiqx5zgzx1xa2nzsjl221njc6yl7"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-latex/latex"))
+    (propagated-inputs
+      `(("go-golang-org-x-image" ,go-golang-org-x-image)
+        ("go-github-com-golang-freetype" ,go-github-com-golang-freetype)
+        ("go-github-com-go-pdf-fpdf" ,go-github-com-go-pdf-fpdf)
+        ("go-github-com-go-fonts-stix" ,go-github-com-go-fonts-stix)
+        ("go-github-com-go-fonts-liberation"
+         ,go-github-com-go-fonts-liberation)
+        ("go-github-com-go-fonts-latin-modern"
+         ,go-github-com-go-fonts-latin-modern)
+        ("go-github-com-go-fonts-dejavu" ,go-github-com-go-fonts-dejavu)
+        ("go-github-com-fogleman-gg" ,go-github-com-fogleman-gg)))
+    (home-page "https://github.com/go-latex/latex")
+    (synopsis "latex")
+    (description
+      "Package latex provides types and functions to work with LaTeX.
+")
+    (license license:bsd-3)))
+
+(define-public go-github-com-boombuler-barcode
+  (package
+    (name "go-github-com-boombuler-barcode")
+    (version "1.0.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/boombuler/barcode")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0v4ypgh3xarzfpgys838mgkfabqacbjklhf4kfqnycs0v0anvnlr"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/boombuler/barcode"))
+    (home-page "https://github.com/boombuler/barcode")
+    (synopsis "Introduction")
+    (description
+      "This is a package for GO which can be used to create different types of barcodes.")
+    (license license:expat)))
+
+(define-public go-github-com-phpdave11-gofpdi
+  (package
+    (name "go-github-com-phpdave11-gofpdi")
+    (version "1.0.13")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/phpdave11/gofpdi")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "01r8a3k2d48fxmhyvix0ry2dc1z5xankd14yxlm496a26vfnc9nq"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/phpdave11/gofpdi"))
+    (propagated-inputs
+      `(("go-github-com-pkg-errors" ,go-github-com-pkg-errors)))
+    (home-page "https://github.com/phpdave11/gofpdi")
+    (synopsis "gofpdi")
+    (description
+      "gofpdi allows you to import an existing PDF into a new PDF.  The following PDF generation libraries are supported:")
+    (license license:expat)))
+
+(define-public go-github-com-phpdave11-gofpdf
+  (package
+    (name "go-github-com-phpdave11-gofpdf")
+    (version "1.4.2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/phpdave11/gofpdf")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1cfssmcv55p37zni9f5c4yn2jwd6fvqwml45f1s9gvj32kbhxvxg"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/phpdave11/gofpdf"))
+    (propagated-inputs
+      `(("go-golang-org-x-image" ,go-golang-org-x-image)
+        ("go-github-com-ruudk-golang-pdf417"
+         ,go-github-com-ruudk-golang-pdf417)
+        ("go-github-com-pkg-errors" ,go-github-com-pkg-errors)
+        ("go-github-com-phpdave11-gofpdi" ,go-github-com-phpdave11-gofpdi)
+        ("go-github-com-boombuler-barcode" ,go-github-com-boombuler-barcode)))
+    (home-page "https://github.com/phpdave11/gofpdf")
+    (synopsis "GoFPDF document generator")
+    (description
+      "Package gofpdf implements a PDF document generator with high level
+support for text, drawing and images.
+")
+    (license license:expat)))
+
+(define-public go-github-com-ruudk-golang-pdf417
+  (package
+    (name "go-github-com-ruudk-golang-pdf417")
+    (version "0.0.0-20201230142125-a7e3863a1245")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/ruudk/golang-pdf417")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "02zq0yk89567sbgck1ynywyycj8rd5s0hs1l81s2jz4sbfx44ac6"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/ruudk/golang-pdf417"))
+    (propagated-inputs
+      `(("go-github-com-stretchr-testify" ,go-github-com-stretchr-testify)
+        ("go-github-com-phpdave11-gofpdf" ,go-github-com-phpdave11-gofpdf)
+        ("go-github-com-boombuler-barcode" ,go-github-com-boombuler-barcode)))
+    (home-page "https://github.com/ruudk/golang-pdf417")
+    (synopsis "PDF417 barcodes in Golang")
+    (description
+      "This is a port of @url{https://github.com/ihabunek/pdf417-php,https://github.com/ihabunek/pdf417-php}")
+    (license license:expat)))
+
+(define-public go-github-com-go-pdf-fpdf
+  (package
+    (name "go-github-com-go-pdf-fpdf")
+    (version "0.5.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-pdf/fpdf")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0zyn1wlwmkp1lp7dbxz3dfb0jjmr2djaf7s9i8lablq8r8j7rw7l"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/go-pdf/fpdf"))
+    (propagated-inputs
+      `(("go-golang-org-x-image" ,go-golang-org-x-image)
+        ("go-github-com-ruudk-golang-pdf417"
+         ,go-github-com-ruudk-golang-pdf417)
+        ("go-github-com-phpdave11-gofpdi" ,go-github-com-phpdave11-gofpdi)
+        ("go-github-com-boombuler-barcode" ,go-github-com-boombuler-barcode)))
+    (home-page "https://github.com/go-pdf/fpdf")
+    (synopsis "GoFPDF document generator")
+    (description
+      "Package fpdf implements a PDF document generator with high level
+support for text, drawing and images.
+")
+    (license license:expat)))
+
+(define-public go-rsc-io-pdf
+  (package
+    (name "go-rsc-io-pdf")
+    (version "0.1.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/rsc/pdf")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "01qjjwa8nn5a2jzd360xqg5zc8s0i2fpwcn2w2g6y2jgn9wl8x84"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "rsc.io/pdf"))
+    (home-page "https://rsc.io/pdf")
+    (synopsis #f)
+    (description "Package pdf implements reading of PDF files.")
+    (license license:bsd-3)))
+
+(define-public go-gonum-org-v1-plot
+  (package
+    (name "go-gonum-org-v1-plot")
+    (version "0.10.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/gonum/plot")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0w5j5ng7nxm9r0xj76g89s38zgcj5c83sdp2f32nyyg5x5s1g1xa"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "gonum.org/v1/plot"
+       #:unpack-path "github.com/gonum/plot"))
+    (propagated-inputs
+      `(("go-rsc-io-pdf" ,go-rsc-io-pdf)
+        ("go-gonum-org-v1-gonum" ,go-gonum-org-v1-gonum)
+        ("go-golang-org-x-image" ,go-golang-org-x-image)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)
+        ("go-github-com-go-pdf-fpdf" ,go-github-com-go-pdf-fpdf)
+        ("go-github-com-go-latex-latex" ,go-github-com-go-latex-latex)
+        ("go-github-com-go-fonts-liberation"
+         ,go-github-com-go-fonts-liberation)
+        ("go-github-com-go-fonts-latin-modern"
+         ,go-github-com-go-fonts-latin-modern)
+        ("go-github-com-fogleman-gg" ,go-github-com-fogleman-gg)
+        ("go-github-com-ajstarks-svgo" ,go-github-com-ajstarks-svgo)
+        ("go-gioui-org" ,go-gioui-org)))
+    (home-page "https://github.com/gonum/plot")
+    (synopsis #f)
+    (description #f)
+    (license #f)))
+
+
+
 (define-public go-github-com-sirupsen-logrus
   (package
     (name "go-github-com-sirupsen-logrus")
@@ -568,6 +1008,39 @@ If no non-opt args are given, golex reads stdin.
     (arguments
      '(#:import-path "gonum.org/v1/netlib"
        #:unpack-path "github.com/gonum/netlib"))
+    (propagated-inputs
+      `(("go-modernc-org-xc" ,go-modernc-org-xc)
+        ("go-modernc-org-strutil" ,go-modernc-org-strutil)
+        ("go-modernc-org-mathutil" ,go-modernc-org-mathutil)
+        ("go-modernc-org-golex" ,go-modernc-org-golex)
+        ("go-modernc-org-cc" ,go-modernc-org-cc)
+        ("go-gonum-org-v1-gonum" ,go-gonum-org-v1-gonum)
+        ("go-golang-org-x-exp" ,go-golang-org-x-exp)
+        ("go-github-com-remyoudompheng-bigfft"
+         ,go-github-com-remyoudompheng-bigfft)))
+    (home-page "https://github.com/gonum/netlib")
+    (synopsis "Gonum NETLIB")
+    (description
+      "Wrapper packages providing an interface to the NETLIB C BLAS and LAPACKE implementations.")
+    (license license:bsd-3)))
+
+(define-public go-gonum-org-v1-gonum
+  (package
+    (name "go-gonum-org-v1-gonum")
+    (version "0.0.0-20210927171344-7274ea1d1842")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/gonum/gonum")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1r1vyb3zbxnqxkv1pyj6jqd8xs7rwp3sm234rcip91zb39inj2jh"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "gonum.org/v1/gonum"
+       #:unpack-path "github.com/gonum/gonum"))
     (propagated-inputs
       `(("go-modernc-org-xc" ,go-modernc-org-xc)
         ("go-modernc-org-strutil" ,go-modernc-org-strutil)
