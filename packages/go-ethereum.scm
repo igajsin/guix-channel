@@ -4,6 +4,38 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-klauspost-compress
+  (package
+    (name "go-github-com-klauspost-compress")
+    (version "1.13.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/klauspost/compress")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32
+            "0ydnf9rizlhm8rilh14674qqx272sbwbkjx06xn9pqvy6mmn2r3r"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "github.com/klauspost/compress"
+       #:phases
+       (modify-phases %standard-phases
+         (add-before 'reset-gzip-timestamps 'fix-permissions
+           (lambda* (#:key outputs #:allow-other-keys)
+             ;; Provide write permissions on gzip files so that
+             ;; reset-gzip-timestamps has sufficient permissions.
+             (for-each make-file-writable
+                       (find-files (assoc-ref outputs "out") ".gz$")))))))
+    (propagated-inputs
+     `(("go-github-com-golang-snappy" ,go-github-com-golang-snappy)))
+    (home-page "https://github.com/klauspost/compress")
+    (synopsis "Go compression library")
+    (description "@code{compress} provides various compression algorithms.")
+    (license license:bsd-3)))
+
 (define-public go-github-com-mitchellh-go-wordwrap
   (package
     (name "go-github-com-mitchellh-go-wordwrap")
