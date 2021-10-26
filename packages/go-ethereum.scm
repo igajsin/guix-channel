@@ -4,6 +4,26 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-kr-text
+  (package
+    (name "go-github-com-kr-text")
+    (version "0.1.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/kr/text")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1gm5bsl01apvc84bw06hasawyqm4q84vx1pm32wr9jnd7a8vjgj1"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/kr/text"))
+    (synopsis "Text formatting in Go")
+    (description "This package provides a text formatting functions in Go.")
+    (home-page "https://github.com/kr/text")
+    (license license:expat)))
 
 ;;
 (define-public go-modernc-org-internal
