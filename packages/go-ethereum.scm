@@ -4,6 +4,35 @@
   #:use-module (guix git-download)
   #:use-module (guix build-system go))
 
+(define-public go-github-com-go-md2man
+  (package
+    (name "go-github-com-go-md2man")
+    (version "2.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cpuguy83/go-md2man")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0r1f7v475dxxgzqci1mxfliwadcrk86ippflx9n411325l4g3ghv"))
+       (modules '((guix build utils)))
+       (snippet '(begin
+                   (delete-file-recursively "vendor")
+                   #t))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cpuguy83/go-md2man"))
+    (propagated-inputs
+     `(("go-github-com-russross-blackfriday" ,go-github-com-russross-blackfriday)))
+    (home-page "https://github.com/cpuguy83/go-md2man")
+    (synopsis "Convert markdown into roff")
+    (description "Go-md2man is a Go program that converts markdown to roff for
+the purpose of building man pages.")
+    (license license:expat)))
+
 (define-public go-github-com-decred-dcrd-lru
   (package
     (name "go-github-com-decred-dcrd-lru")
