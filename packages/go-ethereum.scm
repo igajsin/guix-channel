@@ -280,6 +280,8 @@ Ruby, Python, Go, and C.
 ")
     (license license:bsd-3)))
 
+(define-pubilc go-github-com-sourcegraph-syntaxhighlight go-sourcegraph-com-sourcegraph-syntaxhighlight)
+
 
 (define-public go-github-com-sergi-go-diff
   (package
