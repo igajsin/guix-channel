@@ -98,11 +98,11 @@
   #:use-module (ice-9 match)
   #:use-module (ice-9 regex))
 
-(define-public rtl8821ce-linux-module-my
+(define-public rtl8821ce-linux-module
   (let ((commit "ca204c60724d23ab10244f920d4e50759ed1affb")
         (revision "3"))
     (package
-      (name "rtl8821ce-linux-module-my")
+      (name "rtl8821ce-linux-module")
       (version (git-version "0.0.0" revision commit))
       (source
        (origin
