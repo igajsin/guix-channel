@@ -11698,8 +11698,8 @@
 ;;     (home-page "https://github.com/consensys/gnark-crypto")
 ;;     (synopsis "gnark-crypto")
 ;;     (description
-;;      "gnark-crypto provides elliptic curve cryptography (+pairing) on BN254, 
-;;       BLS12-381, BLS12-377, BW6-761. Also various algorithms (algebra, crypto) 
+;;      "gnark-crypto provides elliptic curve cryptography (+pairing) on BN254,
+;;       BLS12-381, BLS12-377, BW6-761. Also various algorithms (algebra, crypto)
 ;;       of particular interest for zero knowledge proof systems.")
 ;;     (license license:asl2.0)))
 
@@ -11812,7 +11812,7 @@
 ;;     (home-page "https://github.com/gballet/go-libpcsclite")
 ;;     (synopsis "go-libpcsclite")
 ;;     (description
-;;       "This package provides a golang implementation of the libpcpsclite client.  
+;;       "This package provides a golang implementation of the libpcpsclite client.
 ;;        It connects to the pcscd daemon over sockets.")
 ;;     (license license:bsd-3)))
 
@@ -11859,7 +11859,7 @@
 ;;     (home-page "https://github.com/graph-gophers/graphql-go")
 ;;     (synopsis "graphql-go")
 ;;     (description
-;;       "The goal of this project is to provide full support of the GraphQL draft 
+;;       "The goal of this project is to provide full support of the GraphQL draft
 ;;        specification with a set of idiomatic, easy to use Go packages.")
 ;;     (license license:bsd-2)))
 
@@ -11935,7 +11935,7 @@
 ;;     (home-page "https://github.com/holiman/bloomfilter")
 ;;     (synopsis "A bloom filter implementation")
 ;;     (description
-;;      "Face-meltingly fast, thread-safe, marshalable, unionable, probability- 
+;;      "Face-meltingly fast, thread-safe, marshalable, unionable, probability-
 ;;       and optimal-size-calculating Bloom filter in go.")
 ;;     (license #f)))
 
@@ -11957,7 +11957,7 @@
 ;;     (home-page "https://github.com/holiman/uint256")
 ;;     (synopsis "Fixed size 256-bit math library")
 ;;     (description
-;;       "This is a library specialized at replacing the big.Int library for math based on 256-bit types, 
+;;       "This is a library specialized at replacing the big.Int library for math based on 256-bit types,
 ;;        used by both go-ethereum and turbo-geth.")
 ;;     (license license:bsd-3)))
 
@@ -12149,7 +12149,7 @@
 ;;     (home-page "https://github.com/SAP/go-hdb")
 ;;     (synopsis "go-hdb")
 ;;     (description
-;;       "Go-hdb is a native Go (golang) HANA database driver for Go's sql package.  
+;;       "Go-hdb is a native Go (golang) HANA database driver for Go's sql package.
 ;;        It implements the SAP HANA SQL command network protocol.")
 ;;     (license license:asl2.0)))
 
@@ -12171,7 +12171,7 @@
 ;;     (home-page "https://github.com/andreyvit/diff")
 ;;     (synopsis "diff")
 ;;     (description
-;;       "diff provides quick and easy string diffing functions based on github.com/sergi/go-diff, 
+;;       "diff provides quick and easy string diffing functions based on github.com/sergi/go-diff,
 ;;        mainly for diffing strings in tests")
 ;;     (license license:expat)))
 
@@ -12383,7 +12383,7 @@
 ;;     (home-page "https://github.com/foxcpp/go-mockdns")
 ;;     (synopsis "go-mockdns")
 ;;     (description
-;;       "Boilerplate for testing of code involving DNS lookups, including 
+;;       "Boilerplate for testing of code involving DNS lookups, including
 ;;        hacks to redirect net.Lookup* calls.")
 ;;     (license license:expat)))
 
@@ -12616,7 +12616,7 @@
 ;;     (home-page "https://github.com/mattn/go-ieproxy")
 ;;     (synopsis "ieproxy")
 ;;     (description
-;;       "Package ieproxy is a utility to retrieve the proxy parameters 
+;;       "Package ieproxy is a utility to retrieve the proxy parameters
 ;;        (especially of Internet Explorer on windows)")
 ;;     (license license:expat)))
 
@@ -12672,7 +12672,7 @@
 ;;     (home-page "https://github.com/Azure/azure-storage-blob-go")
 ;;     (synopsis "Azure Storage Blob SDK for Go (PREVIEW)")
 ;;     (description
-;;       "The Microsoft Azure Storage SDK for Go allows you to build applications that takes 
+;;       "The Microsoft Azure Storage SDK for Go allows you to build applications that takes
 ;;        advantage of Azure's scalable cloud storage.")
 ;;     (license license:expat)))
 
@@ -12695,8 +12695,8 @@
 ;;     (synopsis "FlatBuffers")
 ;;     (description
 ;;       "FlatBuffers is a cross platform serialization library architected for
-;;        maximum memory efficiency.  It allows you to directly access serialized 
-;;        data without parsing/unpacking it first, while still having great forwards/backwards 
+;;        maximum memory efficiency.  It allows you to directly access serialized
+;;        data without parsing/unpacking it first, while still having great forwards/backwards
 ;;        compatibility.")
 ;;     (license license:asl2.0)))
 
@@ -12779,7 +12779,7 @@
 ;;     (home-page "https://github.com/form3tech-oss/jwt-go")
 ;;     (synopsis "jwt-go")
 ;;     (description
-;;       "Package jwt is a Go implementation of JSON Web Tokens: 
+;;       "Package jwt is a Go implementation of JSON Web Tokens:
 ;;        http://self-issued.info/docs/draft-jones-json-web-token.html")
 ;;     (license license:expat)))
 
@@ -13048,7 +13048,7 @@
 ;;     (home-page "https://github.com/gobuffalo/github_flavored_markdown")
 ;;     (synopsis "a GitHub Flavored Markdown renderer")
 ;;     (description
-;;      "GitHub Flavored Markdown renderer with fenced code block highlighting, 
+;;      "GitHub Flavored Markdown renderer with fenced code block highlighting,
 ;;       clickable header anchor links.")
 ;;     (license #f)))
 
@@ -13120,7 +13120,7 @@
 ;;     (home-page "https://github.com/gobuffalo/validate")
 ;;     (synopsis "github.com/gobuffalo/validate")
 ;;     (description
-;;       "This package provides a framework for writing validations for Go applications.  
+;;       "This package provides a framework for writing validations for Go applications.
 ;;        It does provide you with few validators, but if you need others you can easly build them.")
 ;;     (license (list license:expat license:expat))))
 
@@ -13249,7 +13249,7 @@
 ;;     (home-page "https://github.com/gobuffalo/plush")
 ;;     (synopsis "Plush")
 ;;     (description
-;;       "Plush is the templating system that Go both needs  deserves.  Powerful, flexible, and extendable, 
+;;       "Plush is the templating system that Go both needs  deserves.  Powerful, flexible, and extendable,
 ;;        Plush is there to make writing your templates that much easier.")
 ;;     (license license:expat)))
 
@@ -13284,7 +13284,7 @@
 ;;     (home-page "https://github.com/gobuffalo/genny")
 ;;     (synopsis "Genny")
 ;;     (description
-;;       "Package genny is a _framework_ for writing modular generators, it however, doesn't actually 
+;;       "Package genny is a _framework_ for writing modular generators, it however, doesn't actually
 ;;        generate anything.  It just makes it easier for you to. :)")
 ;;     (license license:expat)))
 
@@ -13353,7 +13353,7 @@
 ;;     (home-page "https://github.com/gobuffalo/packd")
 ;;     (synopsis "github.com/gobuffalo/packd")
 ;;     (description
-;;       "This is a collection of interfaces designed to make using github.com/gobuffalo/packr easier, 
+;;       "This is a collection of interfaces designed to make using github.com/gobuffalo/packr easier,
 ;;        and to make the transition between v1 and v2 as seamless as possible.")
 ;;     (license license:expat)))
 
@@ -13480,7 +13480,7 @@
 ;;     (home-page "https://github.com/gobuffalo/packr")
 ;;     (synopsis "Packr (v2)")
 ;;     (description
-;;       "Packr is a simple solution for bundling static assets inside of Go binaries.  
+;;       "Packr is a simple solution for bundling static assets inside of Go binaries.
 ;;        Most importantly it does it in a way that is friendly to developers while they are developing.")
 ;;     (license license:expat)))
 
@@ -13544,7 +13544,7 @@
 ;;     (home-page "https://github.com/tidwall/pretty")
 ;;     (synopsis "Pretty")
 ;;     (description
-;;       "Pretty is a Go package that provides fast methods for formatting JSON for human readability, 
+;;       "Pretty is a Go package that provides fast methods for formatting JSON for human readability,
 ;;        or to compact JSON for smaller payloads.")
 ;;     (license license:expat)))
 
@@ -13567,7 +13567,7 @@
 ;;     (home-page "https://github.com/youmark/pkcs8")
 ;;     (synopsis "pkcs8")
 ;;     (description
-;;       "Package pkcs8 implements functions to parse and convert private keys in PKCS#8 format, 
+;;       "Package pkcs8 implements functions to parse and convert private keys in PKCS#8 format,
 ;;        as defined in RFC5208 and RFC5958")
 ;;     (license license:expat)))
 
@@ -14139,7 +14139,7 @@
 ;;     (home-page "https://google.golang.org/api")
 ;;     (synopsis "Google APIs Client Library for Go")
 ;;     (description
-;;       "Package api is the root of the packages used to access Google Cloud Services.  
+;;       "Package api is the root of the packages used to access Google Cloud Services.
 ;;        See https://godoc.org/google.golang.org/api for a full list of sub-packages.")
 ;;     (license license:bsd-3)))
 
@@ -14451,7 +14451,7 @@
 ;;     (home-page "https://github.com/mileusna/useragent")
 ;;     (synopsis "Go/Golang package for parsing user agent strings")
 ;;     (description
-;;       "Package ua.Parse(userAgent string) function parses browser's 
+;;       "Package ua.Parse(userAgent string) function parses browser's
 ;;        and bot's user agents strings and determins:")
 ;;     (license license:expat)))
 
@@ -14518,8 +14518,8 @@
 ;;     (home-page "https://github.com/philhofer/fwd")
 ;;     (synopsis "fwd")
 ;;     (description
-;;       "The `fwd` package provides a buffered reader and writer. 
-;;        Each has methods that help improve the encoding/decoding 
+;;       "The `fwd` package provides a buffered reader and writer.
+;;        Each has methods that help improve the encoding/decoding
 ;;        performance of some binary protocols.")
 ;;     (license license:expat)))
 
@@ -14917,7 +14917,7 @@
 ;;     (home-page "https://github.com/golang-jwt/jwt")
 ;;     (synopsis "jwt-go")
 ;;     (description
-;;       "Package jwt is a Go implementation of JSON Web Tokens: 
+;;       "Package jwt is a Go implementation of JSON Web Tokens:
 ;;        http://self-issued.info/docs/draft-jones-json-web-token.html")
 ;;     (license license:expat)))
 
@@ -15088,11 +15088,11 @@
 ;;     (synopsis "OpenAPI Client and Server Code Generator")
 ;;     (description
 ;;       "This package contains a set of utilities for generating Go boilerplate code for
-;;        services based on OpenAPI 3.0  API definitions.  When working with services, 
-;;        it's important to have an API contract which servers and clients both implement 
-;;        to minimize the chances of incompatibilities.  It's tedious to generate Go models 
-;;        which precisely correspond to OpenAPI specifications, so let our code generator 
-;;        do that work for you, so that you can focus on implementing the business logic 
+;;        services based on OpenAPI 3.0  API definitions.  When working with services,
+;;        it's important to have an API contract which servers and clients both implement
+;;        to minimize the chances of incompatibilities.  It's tedious to generate Go models
+;;        which precisely correspond to OpenAPI specifications, so let our code generator
+;;        do that work for you, so that you can focus on implementing the business logic
 ;;        for your service.")
 ;;     (license license:asl2.0)))
 
@@ -15104,7 +15104,7 @@
 ;;       (origin
 ;;         (method git-fetch)
 ;;         (uri (git-reference
-;;                (url "https://github.com/golangci/lint") ;; actually not a lint-1 
+;;                (url "https://github.com/golangci/lint") ;; actually not a lint-1
 ;;                (commit (go-version->git-ref version))))
 ;;         (file-name (git-file-name name version))
 ;;         (sha256
@@ -15173,7 +15173,7 @@
 ;;     (synopsis "InfluxDB Client Go")
 ;;     (description
 ;;       "Package influxdb2 provides API for using InfluxDB client in Go.
-;;        It's intended to use with InfluxDB 2 server.  WriteAPI, QueryAPI 
+;;        It's intended to use with InfluxDB 2 server.  WriteAPI, QueryAPI
 ;;        and Health work also with InfluxDB 1.8")
 ;;     (license license:expat)))
 
@@ -15826,7 +15826,7 @@
 ;;     (home-page "https://github.com/casbin/casbin")
 ;;     (synopsis "Casbin")
 ;;     (description
-;;       "News: still worry about how to write the correct Casbin policy? Casbin online editor is coming to help! 
+;;       "News: still worry about how to write the correct Casbin policy? Casbin online editor is coming to help!
 ;;        Try it at: https://casbin.org/editor/")
 ;;     (license license:asl2.0)))
 
@@ -15891,7 +15891,7 @@
 ;;     (home-page "https://github.com/golang-jwt/jwt")
 ;;     (synopsis "jwt-go")
 ;;     (description
-;;       "Package jwt is a Go implementation of JSON Web Tokens: 
+;;       "Package jwt is a Go implementation of JSON Web Tokens:
 ;;        http://self-issued.info/docs/draft-jones-json-web-token.html")
 ;;     (license license:expat)))
 
@@ -15914,7 +15914,7 @@
 ;;     (synopsis "Goblin")
 ;;     (description
 ;;       "This package provides a Mocha like BDD testing framework written in Go that requires
-;;        no additional dependencies.  Requires no extensive documentation nor complicated 
+;;        no additional dependencies.  Requires no extensive documentation nor complicated
 ;;        steps to get it running.")
 ;;     (license license:expat)))
 
@@ -16123,7 +16123,7 @@
 ;;       "Package assertions contains the implementations for all assertions which
 ;;        are referenced in goconvey's `convey` package
 ;;        (github.com/smartystreets/goconvey/convey) and gunit (github.com/smartystreets/gunit)
-;;        for use with the So(...) method. They can also be used in traditional Go test functions 
+;;        for use with the So(...) method. They can also be used in traditional Go test functions
 ;;        and even in applications.")
 ;;     (license license:expat)))
 
@@ -16242,10 +16242,10 @@
 ;;     (home-page "https://github.com/nats-io/nats-server")
 ;;     (synopsis "Documentation")
 ;;     (description
-;;       "NATS is a simple, secure and performant communications system for digital systems, 
-;;        services and devices.  NATS is part of the Cloud Native Computing Foundation (CNCF).  
-;;        NATS has over 40 client language implementations, and its server can run on-premise, 
-;;        in the cloud, at the edge, and even on a Raspberry Pi.  NATS can secure and simplify 
+;;       "NATS is a simple, secure and performant communications system for digital systems,
+;;        services and devices.  NATS is part of the Cloud Native Computing Foundation (CNCF).
+;;        NATS has over 40 client language implementations, and its server can run on-premise,
+;;        in the cloud, at the edge, and even on a Raspberry Pi.  NATS can secure and simplify
 ;;        design and operation of modern distributed systems.")
 ;;     (license license:asl2.0)))
 
@@ -16466,7 +16466,7 @@
 ;;     (home-page "https://github.com/jcmturner/gofork")
 ;;     (synopsis "GoFork")
 ;;     (description
-;;       "This repository contains modified Go standard library packages for use as work arounds 
+;;       "This repository contains modified Go standard library packages for use as work arounds
 ;;        until issues are addressed in the official distribution.")
 ;;     (license license:bsd-3)))
 
@@ -16670,9 +16670,9 @@
 ;;     (home-page "https://github.com/Shopify/sarama")
 ;;     (synopsis "sarama")
 ;;     (description
-;;       "Package sarama is a pure Go client library for dealing with Apache Kafka 
-;;        (versions 0.8 and later).  It includes a high-level API for easily producing 
-;;        and consuming messages, and a low-level API for controlling bytes on the wire 
+;;       "Package sarama is a pure Go client library for dealing with Apache Kafka
+;;        (versions 0.8 and later).  It includes a high-level API for easily producing
+;;        and consuming messages, and a low-level API for controlling bytes on the wire
 ;;        when the high-level  API is insufficient.  Usage examples for the high-level APIs
 ;;        are provided inline with their full documentation.")
 ;;     (license license:expat)))
@@ -17391,7 +17391,7 @@
 ;;     (synopsis "OpenTelemetry Go API and SDK")
 ;;     (description
 ;;      "OpenTelemetry-Go is the Go implementation of OpenTelemetry. It provides a set of APIs to
-;;       directly measure performance and behavior of your software and send this data 
+;;       directly measure performance and behavior of your software and send this data
 ;;       to observability platforms.")
 ;;     (license license:asl2.0)))
 
@@ -17460,7 +17460,7 @@
 ;;         (sha256
 ;;           (base32 "0liy6xkmkf84qkd65rz28bxysdvs02lr7irq095b4yxy4yly12s7"))))
 ;;     (build-system go-build-system)
-;;     (arguments 
+;;     (arguments
 ;;      `(#:import-path "golang.org/x/sys"
 ;;        #:tests? #f
 ;;        #:phases
@@ -18358,8 +18358,8 @@
 ;;     (home-page "https://github.com/hashicorp/go-uuid")
 ;;     (synopsis "uuid")
 ;;     (description
-;;       "Generates UUID-format strings using high quality,  bytes.  It is not intended to be RFC compliant, 
-;;        merely to use a well-understood string representation of a 128-bit value.  It can also 
+;;       "Generates UUID-format strings using high quality,  bytes.  It is not intended to be RFC compliant,
+;;        merely to use a well-understood string representation of a 128-bit value.  It can also
 ;;        parse UUID-format strings into their component bytes.")
 ;;     (license license:mpl2.0)))
 
@@ -18498,10 +18498,10 @@
 ;;     (home-page "https://github.com/sean-/seed")
 ;;     (synopsis "- Quickly Seed Go's Random Number Generator")
 ;;     (description
-;;       "Boiler-plate to securely seed Go's random number generator (if possible).  
-;;        This library isn't anything fancy, it's just a canonical way of seeding Go's 
+;;       "Boiler-plate to securely seed Go's random number generator (if possible).
+;;        This library isn't anything fancy, it's just a canonical way of seeding Go's
 ;;        random number generator.  Cribbed from (code Nomad) before it was moved into
-;;        (code Consul) and made into a helper function, and now further modularized to 
+;;        (code Consul) and made into a helper function, and now further modularized to
 ;;        be a super lightweight and reusable library.")
 ;;     (license license:expat)))
 
@@ -18562,7 +18562,7 @@
 ;;     (home-page "https://github.com/armon/go-radix")
 ;;     (synopsis "go-radix")
 ;;     (description
-;;       "This package provides the radix package that implements a radix tree. The package only provides 
+;;       "This package provides the radix package that implements a radix tree. The package only provides
 ;;        a single Tree implementation, optimized for sparse nodes.")
 ;;     (license license:expat)))
 
@@ -18698,7 +18698,7 @@
 ;;     (home-page "https://github.com/posener/complete")
 ;;     (synopsis "complete")
 ;;     (description
-;;       "Package complete provides a tool for bash writing bash completion in go, 
+;;       "Package complete provides a tool for bash writing bash completion in go,
 ;;        and bash completion for the go command line.")
 ;;     (license license:expat)))
 
@@ -18862,7 +18862,7 @@
 ;;     (home-page "https://github.com/nats-io/jwt")
 ;;     (synopsis "JWT tokens signed using NKeys for Ed25519 for the NATS ecosystem.")
 ;;     (description
-;;       "A JWT implementation that uses nkeys to digitally sign JWT tokens. Nkeys use Ed25519 
+;;       "A JWT implementation that uses nkeys to digitally sign JWT tokens. Nkeys use Ed25519
 ;;        to provide authentication of JWT claims.")
 ;;     (license license:asl2.0)))
 
@@ -18907,7 +18907,7 @@
 ;;     (home-page "https://github.com/nats-io/nuid")
 ;;     (synopsis "NATS Unique Identifiers")
 ;;     (description
-;;       "This package provides a unique identifier generator that is high performance, 
+;;       "This package provides a unique identifier generator that is high performance,
 ;;        very fast, and tries to be entropy pool friendly.")
 ;;     (license license:asl2.0)))
 
@@ -18995,7 +18995,7 @@
 ;;     (home-page "https://github.com/cncf/udpa")
 ;;     (synopsis "Description")
 ;;     (description
-;;       "This library has been deprecated in favor of github.com/cncf/xds/go.  
+;;       "This library has been deprecated in favor of github.com/cncf/xds/go.
 ;;        All users are recommended to switch their imports.")
 ;;     (license license:asl2.0)))
 
@@ -19051,7 +19051,7 @@
 ;;     (synopsis "xDS API Working Group")
 ;;     (description
 ;;      "The objective of the xDS API Working Group (xDS-WG) is to bring together parties across
-;;       the industry interested in a common control and configuration API for data plane proxies 
+;;       the industry interested in a common control and configuration API for data plane proxies
 ;;       and load balancers, based on the xDS API")
 ;;     (license license:asl2.0)))
 
@@ -19173,7 +19173,7 @@
 ;;     (home-page "https://github.com/ghodss/yaml")
 ;;     (synopsis "YAML marshaling and unmarshaling support for Go")
 ;;     (description
-;;      "A wrapper around go-yaml designed to enable a better way of handling YAML 
+;;      "A wrapper around go-yaml designed to enable a better way of handling YAML
 ;;       when marshaling to and from structs.")
 ;;     (license license:expat)))
 
@@ -19607,7 +19607,7 @@
 ;;     (home-page "https://gopkg.in/alecthomas/kingpin.v2")
 ;;     (synopsis "Kingpin - A Go (golang) command line and flag parser")
 ;;     (description
-;;       "Kingpin is a fluent-style, type-safe command-line parser. It supports flags, 
+;;       "Kingpin is a fluent-style, type-safe command-line parser. It supports flags,
 ;;        nested commands, and positional arguments.")
 ;;     (license license:expat)))
 
@@ -19687,7 +19687,7 @@
 ;;     (synopsis "Server-Sent Events")
 ;;     (description
 ;;       "Server-sent events (SSE) is a technology where a browser receives automatic
-;;        updates from a server via HTTP connection.  The Server-Sent Events EventSource API 
+;;        updates from a server via HTTP connection.  The Server-Sent Events EventSource API
 ;;        is standardized as part of HTML5 by the W3C.")
 ;;     (license license:expat)))
 
@@ -20320,4 +20320,3 @@
 ;;     (description
 ;;       "Package ethereum defines interfaces for interacting with Ethereum.")
 ;;     (license license:gpl3)))
-
