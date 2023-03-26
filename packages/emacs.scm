@@ -12,6 +12,7 @@
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages base)
   #:use-module (gnu packages compression)
+  #:use-module (gnu packages emacs)
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages fribidi)
@@ -24,6 +25,7 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages guile)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages imagemagick)
   #:use-module (gnu packages lesstif)   ; motif
   #:use-module (gnu packages linux)     ; alsa-lib, gpm
   #:use-module (gnu packages mail)      ; for mailutils
@@ -43,6 +45,13 @@
   #:use-module (guix utils)
   #:use-module (ice-9 match)
   #:use-module (srfi srfi-1))
+
+(define (%emacs-modules build-system)
+  (let ((which (build-system-name build-system)))
+    `((guix build ,(symbol-append which '-build-system))
+      (guix build utils)
+      (srfi srfi-1)
+      (ice-9 ftw))))
 
 (define-public emacs
   (package
@@ -271,6 +280,7 @@
            ;; Avoid Emacs's limited movemail substitute that retrieves POP3
            ;; email only via insecure channels.
            ;; This is not needed for (modern) IMAP.
+	   imagemagick
            mailutils
 
            gpm
@@ -395,3 +405,6 @@ languages.")
          (prepend sqlite tree-sitter)))
       (synopsis "Emacs text editor with @code{tree-sitter} support")
       (description "This Emacs build supports tree-sitter."))))
+
+
+
